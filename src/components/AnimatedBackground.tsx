@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import {
-  Projects,
+  Briefcase,
   FileText,
   Wallet,
   Users,
@@ -13,7 +13,7 @@ import {
   Boxes,
   Package,
   BarChart,
-  FileBar
+  LineChart
 } from 'lucide-react';
 
 interface AnimationItem {
@@ -71,7 +71,7 @@ const AnimatedBackground: React.FC = () => {
         return (
           <div className="w-28 h-20 bg-green-100/10 dark:bg-green-900/10 rounded-lg p-3">
             <div className="flex flex-col space-y-2">
-              <Projects className={`${commonClasses} text-green-500/20 group-hover:text-green-500/30 transition-colors`} />
+              <Briefcase className={`${commonClasses} text-green-500/20 group-hover:text-green-500/30 transition-colors`} />
               <FileText className={`${commonClasses} text-green-500/15 group-hover:text-green-500/25 transition-colors`} />
             </div>
           </div>
@@ -91,7 +91,7 @@ const AnimatedBackground: React.FC = () => {
           <div className="w-28 h-24 bg-orange-100/10 dark:bg-orange-900/10 rounded-lg p-3">
             <div className="grid grid-cols-2 gap-2">
               <BarChart className={`${commonClasses} text-orange-500/20 group-hover:text-orange-500/30 transition-colors`} />
-              <FileBar className={`${commonClasses} text-orange-500/15 group-hover:text-orange-500/25 transition-colors`} />
+              <LineChart className={`${commonClasses} text-orange-500/15 group-hover:text-orange-500/25 transition-colors`} />
               <Boxes className={`${commonClasses} text-orange-500/20 group-hover:text-orange-500/30 transition-colors`} />
               <Package className={`${commonClasses} text-orange-500/15 group-hover:text-orange-500/25 transition-colors`} />
             </div>
