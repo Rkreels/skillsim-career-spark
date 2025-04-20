@@ -187,215 +187,219 @@ const Index = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
       <EarlyAccessBanner />
       <Navbar />
-      <AnimatedBackground />
-      <main className="flex-grow relative overflow-visible">
-        <section className="py-16 md:py-24 relative z-10">
-          <div className="container mx-auto px-4 md:px-6 text-center relative">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-skill-blue to-skill-green bg-clip-text text-transparent">
-              {t(
-                "Accelerate Your Career with Industry-Standard Skills",
-                "ইন্ডাস্ট্রি-স্ট্যান্ডার্ড দক্ষতার মাধ্যমে আপনার ক্যারিয়ার ত্বরান্বিত করুন"
-              )}
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl mx-auto">
-              {t(
-                "From classroom to corner office—build the real-world expertise top employers demand.",
-                "ক্লাসরুম থেকে কর্নার অফিস—শীর্ষ নিয়োগকর্তারা যে বাস্তব দক্ষতা চান তা গড়ে তুলুন।"
-              )}
-            </p>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-10">
-              {t(
-                "Tailored learning paths for every role: finance, HR, product, operations, sales & more.",
-                "প্রতিটি ভূমিকার জন্য নির্ধারিত শেখার পথ: ফাইন্যান্স, এইচআর, প্রোডাক্ট, অপারেশনস, সেলস এবং আরও অনেক কিছু।"
-              )}
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-              <Link to="/signup">
-                <Button size="lg" className="skill-button-primary">
-                  {t("Start Your Career Journey", "আপনার ক্যারিয়ার যাত্রা শুরু করুন")}
-                </Button>
-              </Link>
-              <Link to="/early-access">
-                <Button size="lg" variant="outline" className="skill-button-secondary">
-                  {t("Get Early Access", "আর্লি অ্যাক্সেস পান")}
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
+      
+      <div className="relative flex-grow overflow-visible">
+        <AnimatedBackground />
         
-        <section className="py-16 bg-gradient-to-br from-skill-blue to-skill-green text-white relative z-10">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col lg:flex-row gap-12">
-              <div className="lg:w-1/2">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  {t(
-                    "Join the Revolution in Professional Growth",
-                    "পেশাদার বৃদ্ধির বিপ্লবে যোগ দিন"
-                  )}
-                </h2>
-                <p className="text-lg mb-6">
-                  {t(
-                    "SkillSim is changing how professionals learn industry-standard tools and processes with our unique blend of tutorials, interactive simulations, and real-world experience.",
-                    "SkillSim টিউটোরিয়াল, ইন্টারঅ্যাক্টিভ সিমুলেশন, এবং বাস্তব অভিজ্ঞতার অনন্য মিশ্রণের মাধ্যমে পেশাদাররা কিভাবে ইন্ডাস্ট্রি-স্ট্যান্ডার্ড টুল এবং প্রক্রিয়া শিখে তা পরিবর্তন করছে।"
-                  )}
-                </p>
-              </div>
-              
-              <div className="lg:w-1/2">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                    <div className="text-3xl font-bold">20%</div>
-                    <div className="text-sm">{t("Expert Tutorials", "বিশেষজ্ঞ টিউটোরিয়াল")}</div>
-                  </div>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                    <div className="text-3xl font-bold">40%</div>
-                    <div className="text-sm">{t("Interactive Practice", "ইন্টারঅ্যাক্টিভ অনুশীলন")}</div>
-                  </div>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                    <div className="text-3xl font-bold">40%</div>
-                    <div className="text-sm">{t("Real-World Tasks", "বাস্তব কাজ")}</div>
-                  </div>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                    <div className="text-3xl font-bold">100%</div>
-                    <div className="text-sm">{t("Career Growth", "ক্যারিয়ার বৃদ্ধি")}</div>
-                  </div>
-                </div>
+        <main className="relative z-10">
+          <section className="py-16 md:py-24 relative z-10">
+            <div className="container mx-auto px-4 md:px-6 text-center relative">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-skill-blue to-skill-green bg-clip-text text-transparent">
+                {t(
+                  "Accelerate Your Career with Industry-Standard Skills",
+                  "ইন্ডাস্ট্রি-স্ট্যান্ডার্ড দক্ষতার মাধ্যমে আপনার ক্যারিয়ার ত্বরান্বিত করুন"
+                )}
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl mx-auto">
+                {t(
+                  "From classroom to corner office—build the real-world expertise top employers demand.",
+                  "ক্লাসরুম থেকে কর্নার অফিস—শীর্ষ নিয়োগকর্তারা যে বাস্তব দক্ষতা চান তা গড়ে তুলুন।"
+                )}
+              </p>
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-10">
+                {t(
+                  "Tailored learning paths for every role: finance, HR, product, operations, sales & more.",
+                  "প্রতিটি ভূমিকার জন্য নির্ধারিত শেখার পথ: ফাইন্যান্স, এইচআর, প্রোডাক্ট, অপারেশনস, সেলস এবং আরও অনেক কিছু।"
+                )}
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+                <Link to="/signup">
+                  <Button size="lg" className="skill-button-primary">
+                    {t("Start Your Career Journey", "আপনার ক্যারিয়ার যাত্রা শুরু করুন")}
+                  </Button>
+                </Link>
+                <Link to="/early-access">
+                  <Button size="lg" variant="outline" className="skill-button-secondary">
+                    {t("Get Early Access", "আর্লি অ্যাক্সেস পান")}
+                  </Button>
+                </Link>
               </div>
             </div>
-          </div>
-        </section>
-        
-        <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="why-skillsim">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t("Why SkillSim Is Different", "কেন SkillSim আলাদা")}
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex">
-                  <div className="mr-4 mt-1">
-                    <Check className="h-6 w-6 text-skill-green" />
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    {t(benefit.titleEn, benefit.titleBn)}
+          </section>
+          
+          <section className="py-16 bg-gradient-to-br from-skill-blue to-skill-green text-white relative z-10">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="flex flex-col lg:flex-row gap-12">
+                <div className="lg:w-1/2">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                    {t(
+                      "Join the Revolution in Professional Growth",
+                      "পেশাদার বৃদ্ধির বিপ্লবে যোগ দিন"
+                    )}
+                  </h2>
+                  <p className="text-lg mb-6">
+                    {t(
+                      "SkillSim is changing how professionals learn industry-standard tools and processes with our unique blend of tutorials, interactive simulations, and real-world experience.",
+                      "SkillSim টিউটোরিয়াল, ইন্টারঅ্যাক্টিভ সিমুলেশন, এবং বাস্তব অভিজ্ঞতার অনন্য মিশ্রণের মাধ্যমে পেশাদাররা কিভাবে ইন্ডাস্ট্রি-স্ট্যান্ডার্ড টুল এবং প্রক্রিয়া শিখে তা পরিবর্তন করছে।"
+                    )}
                   </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        
-        <section className="py-16 relative z-10" id="careers">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t("Who Should Enroll?", "কাদের ভর্তি হওয়া উচিত?")}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {careers.map((career, index) => (
-                <Card key={index} className="skill-card hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6 text-center">
-                    <div className="mb-4 flex justify-center">
-                      {career.icon}
+                
+                <div className="lg:w-1/2">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                      <div className="text-3xl font-bold">20%</div>
+                      <div className="text-sm">{t("Expert Tutorials", "বিশেষজ্ঞ টিউটোরিয়াল")}</div>
                     </div>
-                    <h3 className="font-medium">
-                      {t(career.titleEn, career.titleBn)}
-                    </h3>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-        
-        <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="how-it-works">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t("How It Works", "কিভাবে কাজ করে")}
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {steps.map((step, index) => (
-                <div key={index} className="text-center">
-                  <div className="mb-4 flex justify-center">
-                    {step.icon}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                      <div className="text-3xl font-bold">40%</div>
+                      <div className="text-sm">{t("Interactive Practice", "ইন্টারঅ্যাক্টিভ অনুশীলন")}</div>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                      <div className="text-3xl font-bold">40%</div>
+                      <div className="text-sm">{t("Real-World Tasks", "বাস্তব কাজ")}</div>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                      <div className="text-3xl font-bold">100%</div>
+                      <div className="text-sm">{t("Career Growth", "ক্যারিয়ার বৃদ্ধি")}</div>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">
-                    {t(step.titleEn, step.titleBn)}
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    {t(step.descriptionEn, step.descriptionBn)}
-                  </p>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-        </section>
-        
-        <section className="py-16 relative z-10" id="why-now">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t("Why Now?", "কেন ��খন?")}
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {whyNow.map((item, index) => (
-                <Card key={index} className="skill-card hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-4">
-                      {t(item.titleEn, item.titleBn)}
+          </section>
+          
+          <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="why-skillsim">
+            <div className="container mx-auto px-4 md:px-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                {t("Why SkillSim Is Different", "কেন SkillSim আলাদা")}
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {benefits.map((benefit, index) => (
+                  <div key={index} className="flex">
+                    <div className="mr-4 mt-1">
+                      <Check className="h-6 w-6 text-skill-green" />
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      {t(benefit.titleEn, benefit.titleBn)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          
+          <section className="py-16 relative z-10" id="careers">
+            <div className="container mx-auto px-4 md:px-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                {t("Who Should Enroll?", "কাদের ভর্তি হওয়া উচিত?")}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                {careers.map((career, index) => (
+                  <Card key={index} className="skill-card hover:shadow-lg transition-shadow">
+                    <CardContent className="p-6 text-center">
+                      <div className="mb-4 flex justify-center">
+                        {career.icon}
+                      </div>
+                      <h3 className="font-medium">
+                        {t(career.titleEn, career.titleBn)}
+                      </h3>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </section>
+          
+          <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="how-it-works">
+            <div className="container mx-auto px-4 md:px-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                {t("How It Works", "কিভাবে কাজ করে")}
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {steps.map((step, index) => (
+                  <div key={index} className="text-center">
+                    <div className="mb-4 flex justify-center">
+                      {step.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">
+                      {t(step.titleEn, step.titleBn)}
                     </h3>
                     <p className="text-gray-700 dark:text-gray-300">
-                      {t(item.descriptionEn, item.descriptionBn)}
+                      {t(step.descriptionEn, step.descriptionBn)}
                     </p>
-                  </CardContent>
-                </Card>
-              ))}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-        
-        <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="pricing">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t("Pricing", "মূল্য")}
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {pricing.map((plan, index) => (
-                <Card key={index} className={`skill-card ${plan.highlight ? 'border-2 border-skill-blue ring-4 ring-skill-blue/20' : ''} hover:shadow-lg transition-shadow`}>
-                  <CardContent className="p-6">
-                    {plan.badge && (
-                      <div className="mb-4">
-                        <span className="skill-badge bg-skill-green/20 text-skill-green px-2 py-1 rounded-full text-sm">
-                          {t(plan.badge.en, plan.badge.bn)}
-                        </span>
-                      </div>
-                    )}
-                    <h3 className="text-2xl font-bold mb-2">
-                      {t(plan.titleEn, plan.titleBn)}
-                    </h3>
-                    <p className="text-3xl font-bold mb-6">
-                      {t(plan.priceEn, plan.priceBn)}
-                    </p>
-                    <ul className="space-y-2 mb-6">
-                      {plan.featuresEn.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start">
-                          <Check className="h-5 w-5 text-skill-green mr-2 shrink-0 mt-0.5" />
-                          <span>{t(feature, plan.featuresBn[featureIndex])}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button className={plan.highlight ? 'w-full skill-button-primary' : 'w-full'}>
-                      {t(plan.ctaEn, plan.ctaBn)}
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+          </section>
+          
+          <section className="py-16 relative z-10" id="why-now">
+            <div className="container mx-auto px-4 md:px-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                {t("Why Now?", "কেন ��খন?")}
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {whyNow.map((item, index) => (
+                  <Card key={index} className="skill-card hover:shadow-lg transition-shadow">
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-semibold mb-4">
+                        {t(item.titleEn, item.titleBn)}
+                      </h3>
+                      <p className="text-gray-700 dark:text-gray-300">
+                        {t(item.descriptionEn, item.descriptionBn)}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
+          
+          <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="pricing">
+            <div className="container mx-auto px-4 md:px-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                {t("Pricing", "মূল্য")}
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {pricing.map((plan, index) => (
+                  <Card key={index} className={`skill-card ${plan.highlight ? 'border-2 border-skill-blue ring-4 ring-skill-blue/20' : ''} hover:shadow-lg transition-shadow`}>
+                    <CardContent className="p-6">
+                      {plan.badge && (
+                        <div className="mb-4">
+                          <span className="skill-badge bg-skill-green/20 text-skill-green px-2 py-1 rounded-full text-sm">
+                            {t(plan.badge.en, plan.badge.bn)}
+                          </span>
+                        </div>
+                      )}
+                      <h3 className="text-2xl font-bold mb-2">
+                        {t(plan.titleEn, plan.titleBn)}
+                      </h3>
+                      <p className="text-3xl font-bold mb-6">
+                        {t(plan.priceEn, plan.priceBn)}
+                      </p>
+                      <ul className="space-y-2 mb-6">
+                        {plan.featuresEn.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="flex items-start">
+                            <Check className="h-5 w-5 text-skill-green mr-2 shrink-0 mt-0.5" />
+                            <span>{t(feature, plan.featuresBn[featureIndex])}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Button className={plan.highlight ? 'w-full skill-button-primary' : 'w-full'}>
+                        {t(plan.ctaEn, plan.ctaBn)}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
       
       <Footer />
     </div>
