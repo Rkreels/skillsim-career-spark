@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -9,7 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import AnimatedBackground from '@/components/AnimatedBackground';
 
 // Icons
-import { Briefcase, GraduationCap, Handshake, Users, ChartBar, ChartLine } from 'lucide-react';
+import { Briefcase, GraduationCap, Handshake, Users, ChartBar, ChartLine, Check } from 'lucide-react';
 
 const Index = () => {
   const { t } = useLanguage();
@@ -33,7 +34,7 @@ const Index = () => {
     {
       icon: <ChartLine className="h-8 w-8 text-skill-green-dark" />,
       titleEn: "Supply Chain Experts: Optimize flows like an industry pro",
-      titleBn: "সাপ্লাই চেইন এক্সপার্ট: একজন ইন্ডাস্ট্রি প্রফেশনালের মতো ফ্ল�� অপটিমাইজ করুন",
+      titleBn: "সাপ্লাই চেইন এক্সপার্ট: একজন ইন্ডাস্ট্রি প্রফেশনালের মতো ফ্লো অপটিমাইজ করুন",
     },
     {
       icon: <Handshake className="h-8 w-8 text-purple-500" />,
@@ -177,17 +178,27 @@ const Index = () => {
     },
   ];
 
+  // Function to scroll to section
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <EarlyAccessBanner />
       <Navbar />
       
       <main className="flex-grow relative">
-        <AnimatedBackground />
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <AnimatedBackground />
+        </div>
         
         {/* Hero Section */}
         <section className="py-16 md:py-24 relative overflow-hidden">
-          <div className="container mx-auto px-4 md:px-6 text-center">
+          <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-skill-blue to-skill-green bg-clip-text text-transparent">
               {t(
                 "Accelerate Your Career with Industry-Standard Skills",
@@ -222,7 +233,7 @@ const Index = () => {
         </section>
         
         {/* Why SkillSim Section */}
-        <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="why-skillsim">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               {t("Why SkillSim Is Different", "কেন SkillSim আলাদা")}
@@ -243,14 +254,14 @@ const Index = () => {
         </section>
         
         {/* Who Should Enroll Section */}
-        <section className="py-16">
+        <section className="py-16 relative z-10" id="careers">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               {t("Who Should Enroll?", "কাদের ভর্তি হওয়া উচিত?")}
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
               {careers.map((career, index) => (
-                <Card key={index} className="skill-card">
+                <Card key={index} className="skill-card hover:shadow-lg transition-shadow">
                   <CardContent className="p-6 text-center">
                     <div className="mb-4 flex justify-center">
                       {career.icon}
@@ -266,7 +277,7 @@ const Index = () => {
         </section>
         
         {/* How It Works Section */}
-        <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="how-it-works">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               {t("How It Works", "কিভাবে কাজ করে")}
@@ -290,14 +301,14 @@ const Index = () => {
         </section>
         
         {/* Why Now Section */}
-        <section className="py-16">
+        <section className="py-16 relative z-10" id="why-now">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               {t("Why Now?", "কেন এখন?")}
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {whyNow.map((item, index) => (
-                <Card key={index} className="skill-card">
+                <Card key={index} className="skill-card hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold mb-4">
                       {t(item.titleEn, item.titleBn)}
@@ -313,18 +324,18 @@ const Index = () => {
         </section>
         
         {/* Pricing Section */}
-        <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="pricing">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               {t("Pricing", "মূল্য")}
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {pricing.map((plan, index) => (
-                <Card key={index} className={`skill-card ${plan.highlight ? 'border-2 border-skill-blue ring-4 ring-skill-blue/20' : ''}`}>
+                <Card key={index} className={`skill-card ${plan.highlight ? 'border-2 border-skill-blue ring-4 ring-skill-blue/20' : ''} hover:shadow-lg transition-shadow`}>
                   <CardContent className="p-6">
                     {plan.badge && (
                       <div className="mb-4">
-                        <span className="skill-badge bg-skill-green/20 text-skill-green">
+                        <span className="skill-badge bg-skill-green/20 text-skill-green px-2 py-1 rounded-full text-sm">
                           {t(plan.badge.en, plan.badge.bn)}
                         </span>
                       </div>
@@ -349,6 +360,29 @@ const Index = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </div>
+        </section>
+        
+        {/* About Section */}
+        <section className="py-16 relative z-10" id="about">
+          <div className="container mx-auto px-4 md:px-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              {t("About SkillSim", "SkillSim সম্পর্কে")}
+            </h2>
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                {t(
+                  "SkillSim is revolutionizing how professionals learn and master industry-standard tools and processes through hands-on simulations.",
+                  "SkillSim হাতে-কলমে সিমুলেশনের মাধ্যমে পেশাদাররা কিভাবে শিখে এবং ইন্ডাস্ট্রি-স্ট্যান্ডার্ড টুল এবং প্রক্রিয়া মাস্টার করে তা বিপ্লব করছে।"
+                )}
+              </p>
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                {t(
+                  "Our mission is to bridge the gap between theoretical knowledge and practical skills that employers demand, helping professionals advance their careers and stand out in a competitive market.",
+                  "আমাদের লক্ষ্য হল তাত্ত্বিক জ্ঞান এবং নিয়োগকর্তারা যে ব্যবহারিক দক্ষতার দাবি করে তার মধ্যে সেতু তৈরি করা, পেশাদারদের তাদের ক্যারিয়ার এগিয়ে নিতে এবং প্রতিযোগিতামূলক বাজারে বিশেষ স্থান অর্জন করতে সাহায্য করা।"
+                )}
+              </p>
             </div>
           </div>
         </section>
