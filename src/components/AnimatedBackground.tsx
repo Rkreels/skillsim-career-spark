@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import {
   Briefcase,
@@ -36,8 +37,10 @@ interface AnimationItem {
 
 const AnimatedBackground: React.FC = () => {
   const [items, setItems] = useState<AnimationItem[]>([]);
+  const [isScrolling, setIsScrolling] = useState(false);
   const animationRef = useRef<number | null>(null);
   const lastScrollY = useRef(window.scrollY);
+  const scrollTimeout = useRef<number | null>(null);
 
   useEffect(() => {
     const generateItems = () => {
@@ -55,12 +58,16 @@ const AnimatedBackground: React.FC = () => {
       );
       
       for (let i = 0; i < 20; i++) {
+        // Reduce duration by 5% by multiplying by 0.95
+        const baseDuration = 15 + Math.random() * 10;
+        const speedIncreasedDuration = baseDuration * 0.95;
+        
         newItems.push({
           id: i,
           type: types[Math.floor(Math.random() * types.length)],
           left: `${Math.random() * 90}%`,
           top: `${(i / 20) * pageHeight}px`,
-          duration: 15 + Math.random() * 10,
+          duration: speedIncreasedDuration,
           delay: Math.random() * 5,
           scale: 0.7 + Math.random() * 0.4,
         });
@@ -74,29 +81,33 @@ const AnimatedBackground: React.FC = () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
+      if (scrollTimeout.current) {
+        window.clearTimeout(scrollTimeout.current);
+      }
     };
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Set scrolling state to true
+      setIsScrolling(true);
+      
+      // Clear any existing timeout
+      if (scrollTimeout.current) {
+        window.clearTimeout(scrollTimeout.current);
+      }
+      
+      // Set a timeout to detect when scrolling stops
+      scrollTimeout.current = window.setTimeout(() => {
+        setIsScrolling(false);
+      }, 150); // Wait 150ms after scroll stops before resuming animations
+      
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
       
-      animationRef.current = requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        if (Math.abs(currentScrollY - lastScrollY.current) > 5) {
-          lastScrollY.current = currentScrollY;
-          
-          setItems(prevItems => 
-            prevItems.map(item => ({
-              ...item,
-              left: item.left,
-              top: `${parseFloat(item.top) + (Math.random() * 2 - 1)}px`,
-            }))
-          );
-        }
-      });
+      // Only update positions when scrolling stops
+      lastScrollY.current = window.scrollY;
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -105,6 +116,9 @@ const AnimatedBackground: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
+      }
+      if (scrollTimeout.current) {
+        window.clearTimeout(scrollTimeout.current);
       }
     };
   }, []);
@@ -459,12 +473,12 @@ const AnimatedBackground: React.FC = () => {
       {items.map(item => (
         <div
           key={item.id}
-          className="absolute pointer-events-none transition-all duration-500 ease-in-out"
+          className={`absolute pointer-events-none transition-all ${isScrolling ? 'paused' : ''}`}
           style={{
             left: item.left,
             top: item.top,
             transform: `scale(${item.scale})`,
-            animation: `float-bubble-${item.id} ${item.duration}s ease-in-out infinite`,
+            animation: !isScrolling ? `float-bubble-${item.id} ${item.duration}s ease-in-out infinite` : 'none',
             animationDelay: `${item.delay}s`,
             zIndex: 51,
             willChange: 'transform',
@@ -494,6 +508,10 @@ const AnimatedBackground: React.FC = () => {
             }
           }
         `).join('')}
+        
+        .paused {
+          animation-play-state: paused !important;
+        }
       </style>
     </div>
   );
