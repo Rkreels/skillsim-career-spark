@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
+				inter: ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,7 +66,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				skill: {
+					blue: {
+						DEFAULT: '#2563EB',
+						dark: '#1E40AF',
+					},
+					green: {
+						DEFAULT: '#10B981',
+						dark: '#059669',
+					},
+					dark: '#111827',
+					light: '#FFFFFF',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +101,33 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(0)' }
+				},
+				'slide-right': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(100%)' }
+				},
+				'pulse-fade': {
+					'0%': { opacity: '0.3' },
+					'50%': { opacity: '0.7' },
+					'100%': { opacity: '0.3' }
+				},
+				'float': {
+					'0%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' },
+					'100%': { transform: 'translateY(0px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'slide-in': 'slide-in 0.5s ease-out forwards',
+				'slide-right': 'slide-right 15s linear infinite',
+				'pulse-fade': 'pulse-fade 3s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite'
 			}
 		}
 	},
