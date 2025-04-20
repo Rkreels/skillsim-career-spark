@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 interface AnimationItem {
   id: number;
-  type: 'excel' | 'jira' | 'quickbooks';
+  type: 'finance' | 'project' | 'analytics';
   left: string;
   top: string;
   duration: number;
@@ -14,15 +14,14 @@ const AnimatedBackground: React.FC = () => {
   const [items, setItems] = useState<AnimationItem[]>([]);
 
   useEffect(() => {
-    // Generate random animation items
     const generateItems = () => {
       const newItems: AnimationItem[] = [];
-      const types = ['excel', 'jira', 'quickbooks'];
+      const types = ['finance', 'project', 'analytics'];
       
       for (let i = 0; i < 15; i++) {
         newItems.push({
           id: i,
-          type: types[Math.floor(Math.random() * types.length)] as 'excel' | 'jira' | 'quickbooks',
+          type: types[Math.floor(Math.random() * types.length)] as 'finance' | 'project' | 'analytics',
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * 100}%`,
           duration: 3 + Math.random() * 4,
@@ -38,32 +37,32 @@ const AnimatedBackground: React.FC = () => {
 
   const renderIcon = (type: string) => {
     switch (type) {
-      case 'excel':
+      case 'finance':
         return (
-          <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-md flex items-center justify-center">
+          <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-md flex items-center justify-center">
             <div className="grid grid-cols-2 gap-1 p-1">
-              <div className="w-3 h-3 bg-green-500/50 animate-pulse-fade"></div>
-              <div className="w-3 h-3 bg-green-500/30"></div>
-              <div className="w-3 h-3 bg-green-500/30"></div>
-              <div className="w-3 h-3 bg-green-500/50 animate-pulse-fade" style={{ animationDelay: '1s' }}></div>
+              <div className="w-3 h-3 bg-blue-500/50 animate-pulse-fade"></div>
+              <div className="w-3 h-3 bg-blue-500/30"></div>
+              <div className="w-3 h-3 bg-blue-500/30"></div>
+              <div className="w-3 h-3 bg-blue-500/50 animate-pulse-fade" style={{ animationDelay: '1s' }}></div>
             </div>
           </div>
         );
-      case 'jira':
+      case 'project':
         return (
-          <div className="w-20 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-md p-2">
-            <div className="h-2 w-12 bg-blue-500/50 rounded mb-2"></div>
-            <div className="h-2 w-8 bg-blue-500/30 rounded mb-2"></div>
-            <div className="h-2 w-10 bg-blue-500/40 rounded animate-pulse-fade"></div>
+          <div className="w-20 h-14 bg-green-100 dark:bg-green-900/30 rounded-md p-2">
+            <div className="h-2 w-12 bg-green-500/50 rounded mb-2"></div>
+            <div className="h-2 w-8 bg-green-500/30 rounded mb-2"></div>
+            <div className="h-2 w-10 bg-green-500/40 rounded animate-pulse-fade"></div>
           </div>
         );
-      case 'quickbooks':
+      case 'analytics':
         return (
           <div className="w-20 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-md p-2">
-            <div className="h-2 w-full bg-purple-500/30 rounded mb-2"></div>
-            <div className="h-6 w-full bg-purple-500/20 rounded flex items-end">
-              <div className="h-4 w-4 bg-purple-500/40 rounded animate-pulse-fade"></div>
-              <div className="h-2 w-8 ml-1 bg-purple-500/40 rounded"></div>
+            <div className="h-6 w-full bg-purple-500/20 rounded flex items-end justify-center">
+              <div className="h-4 w-1 bg-purple-500/40 mx-0.5 rounded-t animate-pulse-fade"></div>
+              <div className="h-3 w-1 bg-purple-500/40 mx-0.5 rounded-t"></div>
+              <div className="h-5 w-1 bg-purple-500/40 mx-0.5 rounded-t animate-pulse-fade"></div>
             </div>
           </div>
         );

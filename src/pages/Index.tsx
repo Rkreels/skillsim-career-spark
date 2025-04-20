@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,80 +9,80 @@ import { Card, CardContent } from '@/components/ui/card';
 import AnimatedBackground from '@/components/AnimatedBackground';
 
 // Icons
-import { Book, Check, User } from 'lucide-react';
+import { Briefcase, GraduationCap, Handshake, Users, ChartBar, ChartLine } from 'lucide-react';
 
 const Index = () => {
   const { t } = useLanguage();
 
   const careers = [
     {
-      icon: <User className="h-8 w-8 text-skill-blue" />,
-      titleEn: "Accountants & Finance Analysts",
-      titleBn: "হিসাবরক্ষক ও ফাইন্যান্স বিশ্লেষক",
+      icon: <Briefcase className="h-8 w-8 text-skill-blue" />,
+      titleEn: "Finance Professionals: From ledger to leadership",
+      titleBn: "ফাইন্যান্স পেশাদার: লেজার থেকে নেতৃত্বে",
     },
     {
-      icon: <User className="h-8 w-8 text-skill-green" />,
-      titleEn: "Project Managers & PMO Leads",
-      titleBn: "প্রজেক্ট ম্যানেজার ও পিএমও লিড",
+      icon: <GraduationCap className="h-8 w-8 text-skill-green" />,
+      titleEn: "Project Leads: Nail your next rollout with confidence",
+      titleBn: "প্রজেক্ট লিড: আত্মবিশ্বাসের সাথে আপনার পরবর্তী রোলআউট সম্পন্ন করুন",
     },
     {
-      icon: <User className="h-8 w-8 text-skill-blue-dark" />,
-      titleEn: "HR Managers & Recruiters",
-      titleBn: "এইচআর ম্যানেজার ও নিয়োগকারী",
+      icon: <Users className="h-8 w-8 text-skill-blue-dark" />,
+      titleEn: "HR & Talent Teams: Streamline processes & boost engagement",
+      titleBn: "এইচআর ও ট্যালেন্ট টিম: প্রক্রিয়া সহজ করুন এবং এনগেজমেন্ট বাড়ান",
     },
     {
-      icon: <User className="h-8 w-8 text-skill-green-dark" />,
-      titleEn: "Supply Chain & Operations Pros",
-      titleBn: "সাপ্লাই চেইন ও অপারেশনস পেশাজীবী",
+      icon: <ChartLine className="h-8 w-8 text-skill-green-dark" />,
+      titleEn: "Supply Chain Experts: Optimize flows like an industry pro",
+      titleBn: "সাপ্লাই চেইন এক্সপার্ট: একজন ইন্ডাস্ট্রি প্রফেশনালের মতো ফ্ল�� অপটিমাইজ করুন",
     },
     {
-      icon: <User className="h-8 w-8 text-purple-500" />,
-      titleEn: "Sales & Biz Dev Reps",
-      titleBn: "সেলস ও বিজনেস ডেভেলপমেন্ট প্রতিনিধি",
+      icon: <Handshake className="h-8 w-8 text-purple-500" />,
+      titleEn: "Sales & BizDev Pros: Turn data into deals",
+      titleBn: "সেলস ও বিজনেস ডেভেলপমেন্ট প্রো: ডেটা থেকে ডিল তৈরি করুন",
     },
     {
-      icon: <User className="h-8 w-8 text-orange-500" />,
-      titleEn: "Aspiring Developers & Data Analysts",
-      titleBn: "ভবিষ্যৎ ডেভেলপার ও ডেটা বিশ্লেষক",
+      icon: <ChartBar className="h-8 w-8 text-orange-500" />,
+      titleEn: "Aspiring Analysts & Developers: Power data-driven decisions",
+      titleBn: "উচ্চাকাঙ্ক্ষী বিশ্লেষক ও ডেভেলপার: ডেটা-চালিত সিদ্ধান্ত নিন",
     },
   ];
 
   const steps = [
     {
-      icon: <Book className="h-8 w-8 text-skill-blue" />,
-      titleEn: "Pick Your Software",
-      titleBn: "সফটওয়্যার বেছে নিন",
-      descriptionEn: "Browse our library of industry-standard software simulations.",
-      descriptionBn: "আমাদের ইন্ডাস্ট্রি-স্ট্যান্ডার্ড সফটওয়্যার সিমুলেশন লাইব্রেরি ব্রাউজ করুন।",
+      icon: <Briefcase className="h-8 w-8 text-skill-blue" />,
+      titleEn: "Choose Your Career Path",
+      titleBn: "আপনার ক্যারিয়ার পথ বেছে নিন",
+      descriptionEn: "Select a learning track tailored to your professional goals",
+      descriptionBn: "আপনার পেশাদার লক্ষ্যের জন্য নির্ধারিত একটি লার্নিং ট্র্যাক নির্বাচন করুন",
     },
     {
-      icon: <Book className="h-8 w-8 text-skill-green" />,
-      titleEn: "Complete Real-World Tasks",
-      titleBn: "বাস্তব কাজ সম্পন্ন করুন",
-      descriptionEn: "Practice with guided hands-on simulations of real software.",
-      descriptionBn: "আসল সফটওয়্যারের গাইডেড হাতে-কলমে সিমুলেশন দিয়ে অনুশীলন করুন।",
+      icon: <GraduationCap className="h-8 w-8 text-skill-green" />,
+      titleEn: "Master Role-Specific Scenarios",
+      titleBn: "ভূমিকা-নির্দিষ্ট পরিস্থিতি মাস্টার করুন",
+      descriptionEn: "Practice with real-world situations you'll face in your role",
+      descriptionBn: "আপনার ভূমিকায় যে বাস্তব পরিস্থিতির মুখোমুখি হবেন তা নিয়ে অনুশীলন করুন",
     },
     {
-      icon: <Book className="h-8 w-8 text-purple-500" />,
-      titleEn: "Earn Badges & Certificates",
-      titleBn: "ব্যাজ ও সার্টিফিকেট অর্জন করুন",
-      descriptionEn: "Show off your skills with recognized credentials.",
-      descriptionBn: "স্বীকৃত ক্রেডেনশিয়াল দিয়ে আপনার দক্ষতা প্রদর্শন করুন।",
+      icon: <ChartLine className="h-8 w-8 text-purple-500" />,
+      titleEn: "Earn Career-Boosting Credentials",
+      titleBn: "ক্যারিয়ার-বৃদ্ধিকারী ক্রেডেনশিয়াল অর্জন করুন",
+      descriptionEn: "Get recognized certifications that validate your expertise",
+      descriptionBn: "আপনার দক্ষতা যাচাই করে এমন স্বীকৃত সার্টিফিকেশন পান",
     },
   ];
 
   const benefits = [
     {
-      titleEn: "20% Expert Tutorials, 40% Interactive Simulations, 40% Real-World Experience",
-      titleBn: "২০% টিউটোরিয়াল, ৪০% ইন্টারঅ্যাক্টিভ সিমুলেশন, ৪০% বাস্তব অভিজ্ঞতা",
+      titleEn: "Become a go-to expert in your field—aligned to industry best practices",
+      titleBn: "আপনার ক্ষেত্রে একজন বিশেষজ্ঞ হয়ে উঠুন—ইন্ডাস্ট্রি সেরা অনুশীলনের সাথে সামঞ্জস্যপূর্ণ",
     },
     {
-      titleEn: "Not just videos or bootcamps—SkillSim blends theory, practice, and real tasks for true mastery.",
-      titleBn: "শুধু ভিডিও বা বুটক্যাম্প নয়—SkillSim তত্ত্ব, অনুশীলন ও বাস্তব কাজ একত্রিত করে প্রকৃত দক্ষতা দেয়।",
+      titleEn: "Bridge the gap between theory and on-the-job execution",
+      titleBn: "তত্ত্ব এবং কাজের-ক্ষেত্রে বাস্তবায়নের মধ্যের ব্যবধান দূর করুন",
     },
     {
-      titleEn: "Revolutionizing learning with a blended model that drives real career growth.",
-      titleBn: "মিশ্র মডেলের মাধ্যমে শেখার ধারাকে নতুন দিগন্তে নিয়ে যাচ্ছে।",
+      titleEn: "Earn credentials employers recognize, customized to your role",
+      titleBn: "নিয়োগকর্তারা স্বীকৃত, আপনার ভূমিকার জন্য কাস্টমাইজড ক্রেডেনশিয়াল অর্জন করুন",
     },
   ];
 
@@ -191,25 +190,31 @@ const Index = () => {
           <div className="container mx-auto px-4 md:px-6 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-skill-blue to-skill-green bg-clip-text text-transparent">
               {t(
-                "Master the Tools That Power Modern Careers",
-                "যেসব সফটওয়্যার চালায় আপনার ক্যারিয়ার সাফল্য"
+                "Accelerate Your Career with Industry-Standard Skills",
+                "ইন্ডাস্ট্রি-স্ট্যান্ডার্ড দক্ষতার মাধ্যমে আপনার ক্যারিয়ার ত্বরান্বিত করুন"
               )}
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl mx-auto">
               {t(
-                "From students to CEOs—get hands-on training in QuickBooks, Jira, SAP & more.",
-                "শিক্ষার্থী থেকে সিইও সবাই-এর জন্য—QuickBooks, Jira, SAP ও আরও অনেক সফটওয়্যারে হাতে-কলমে প্রশিক্ষণ।"
+                "From classroom to corner office—build the real-world expertise top employers demand.",
+                "ক্লাসরুম থেকে কর্নার অফিস—শীর্ষ নিয়োগকর্তারা যে বাস্তব দক্ষতা চান তা গড়ে তুলুন।"
+              )}
+            </p>
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-10">
+              {t(
+                "Tailored learning paths for every role: finance, HR, product, operations, sales & more.",
+                "প্রতিটি ভূমিকার জন্য নির্ধারিত শেখার পথ: ফাইন্যান্স, এইচআর, প্রোডাক্ট, অপারেশনস, সেলস এবং আরও অনেক কিছু।"
               )}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
               <Link to="/signup">
                 <Button size="lg" className="skill-button-primary">
-                  {t("Start Learning Free", "বিনামূল্যে শিখতে শুরু করুন")}
+                  {t("Start Your Career Journey", "আপনার ক্যারিয়ার যাত্রা শুরু করুন")}
                 </Button>
               </Link>
-              <Link to="/software">
+              <Link to="/early-access">
                 <Button size="lg" variant="outline" className="skill-button-secondary">
-                  {t("Browse Software", "সফটওয়্যার ব্রাউজ করুন")}
+                  {t("Get Early Access", "আর্লি অ্যাক্সেস পান")}
                 </Button>
               </Link>
             </div>
