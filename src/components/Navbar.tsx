@@ -1,21 +1,32 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 
 export const Navbar: React.FC = () => {
   const { t } = useLanguage();
+  const location = useLocation();
   
-  // Function to scroll to section
+  // Function to scroll to section when on homepage
   const scrollToSection = (id: string) => {
+    if (location.pathname !== '/') {
+      return true; // Allow normal navigation
+    }
+    
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      return false;
+      return false; // Prevent default
     }
-    return true;
+    return true; // Allow normal navigation if element not found
+  };
+  
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (!scrollToSection(id)) {
+      e.preventDefault();
+    }
   };
   
   return (
@@ -29,12 +40,19 @@ export const Navbar: React.FC = () => {
           <Link to="/career-paths" className="text-gray-700 dark:text-gray-300 hover:text-skill-blue dark:hover:text-skill-blue-dark transition-colors">
             {t("Career Paths", "ক্যারিয়ার পাথস")}
           </Link>
-          <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollToSection('pricing'); }} className="text-gray-700 dark:text-gray-300 hover:text-skill-blue dark:hover:text-skill-blue-dark transition-colors">
+          <a 
+            href="#pricing" 
+            onClick={(e) => handleNavClick(e, 'pricing')} 
+            className="text-gray-700 dark:text-gray-300 hover:text-skill-blue dark:hover:text-skill-blue-dark transition-colors"
+          >
             {t("Pricing", "মূল্য")}
           </a>
-          <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }} className="text-gray-700 dark:text-gray-300 hover:text-skill-blue dark:hover:text-skill-blue-dark transition-colors">
+          <Link to="/about" className="text-gray-700 dark:text-gray-300 hover:text-skill-blue dark:hover:text-skill-blue-dark transition-colors">
             {t("About", "আমাদের সম্পর্কে")}
-          </a>
+          </Link>
+          <Link to="/contact" className="text-gray-700 dark:text-gray-300 hover:text-skill-blue dark:hover:text-skill-blue-dark transition-colors">
+            {t("Contact", "যোগাযোগ")}
+          </Link>
         </div>
         
         <div className="flex items-center space-x-4">

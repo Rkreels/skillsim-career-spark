@@ -197,8 +197,8 @@ const Index = () => {
         </div>
         
         {/* Hero Section */}
-        <section className="py-16 md:py-24 relative overflow-hidden">
-          <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
+        <section className="py-16 md:py-24 relative z-10">
+          <div className="container mx-auto px-4 md:px-6 text-center relative">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-skill-blue to-skill-green bg-clip-text text-transparent">
               {t(
                 "Accelerate Your Career with Industry-Standard Skills",
@@ -228,6 +228,49 @@ const Index = () => {
                   {t("Get Early Access", "আর্লি অ্যাক্সেস পান")}
                 </Button>
               </Link>
+            </div>
+          </div>
+        </section>
+        
+        {/* Join the Revolution Section */}
+        <section className="py-16 bg-gradient-to-br from-skill-blue to-skill-green text-white relative z-10">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="flex flex-col lg:flex-row gap-12">
+              <div className="lg:w-1/2">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  {t(
+                    "Join the Revolution in Professional Growth",
+                    "পেশাদার বৃদ্ধির বিপ্লবে যোগ দিন"
+                  )}
+                </h2>
+                <p className="text-lg mb-6">
+                  {t(
+                    "SkillSim is changing how professionals learn industry-standard tools and processes with our unique blend of tutorials, interactive simulations, and real-world experience.",
+                    "SkillSim টিউটোরিয়াল, ইন্টারঅ্যাকটিভ সিমুলেশন, এবং বাস্তব অভিজ্ঞতার অনন্য মিশ্রণের মাধ্যমে পেশাদাররা কিভাবে ইন্ডাস্ট্রি-স্ট্যান্ডার্ড টুল এবং প্রক্রিয়া শিখে তা পরিবর্তন করছে।"
+                  )}
+                </p>
+              </div>
+              
+              <div className="lg:w-1/2">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                    <div className="text-3xl font-bold">20%</div>
+                    <div className="text-sm">{t("Expert Tutorials", "বিশেষজ্ঞ টিউটোরিয়াল")}</div>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                    <div className="text-3xl font-bold">40%</div>
+                    <div className="text-sm">{t("Interactive Practice", "ইন্টারঅ্যাক্টিভ অনুশীলন")}</div>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                    <div className="text-3xl font-bold">40%</div>
+                    <div className="text-sm">{t("Real-World Tasks", "বাস্তব কাজ")}</div>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                    <div className="text-3xl font-bold">100%</div>
+                    <div className="text-sm">{t("Career Growth", "ক্যারিয়ার বৃদ্ধি")}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -360,29 +403,6 @@ const Index = () => {
                   </CardContent>
                 </Card>
               ))}
-            </div>
-          </div>
-        </section>
-        
-        {/* About Section */}
-        <section className="py-16 relative z-10" id="about">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t("About SkillSim", "SkillSim সম্পর্কে")}
-            </h2>
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                {t(
-                  "SkillSim is revolutionizing how professionals learn and master industry-standard tools and processes through hands-on simulations.",
-                  "SkillSim হাতে-কলমে সিমুলেশনের মাধ্যমে পেশাদাররা কিভাবে শিখে এবং ইন্ডাস্ট্রি-স্ট্যান্ডার্ড টুল এবং প্রক্রিয়া মাস্টার করে তা বিপ্লব করছে।"
-                )}
-              </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
-                {t(
-                  "Our mission is to bridge the gap between theoretical knowledge and practical skills that employers demand, helping professionals advance their careers and stand out in a competitive market.",
-                  "আমাদের লক্ষ্য হল তাত্ত্বিক জ্ঞান এবং নিয়োগকর্তারা যে ব্যবহারিক দক্ষতার দাবি করে তার মধ্যে সেতু তৈরি করা, পেশাদারদের তাদের ক্যারিয়ার এগিয়ে নিতে এবং প্রতিযোগিতামূলক বাজারে বিশেষ স্থান অর্জন করতে সাহায্য করা।"
-                )}
-              </p>
             </div>
           </div>
         </section>

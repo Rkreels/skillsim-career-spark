@@ -22,12 +22,12 @@ const Signup = () => {
             <div className="lg:w-1/2">
               <div className="bg-gradient-to-br from-skill-blue to-skill-green rounded-2xl p-8 text-white h-full flex flex-col justify-center">
                 <h2 className="text-3xl font-bold mb-6">
-                  {t("Join the Revolution in Software Learning", "সফটওয়্যার শেখার বিপ্লবে যোগ দিন")}
+                  {t("Join the Revolution in Professional Development", "পেশাদার বিকাশের বিপ্লবে যোগ দিন")}
                 </h2>
                 <p className="mb-6">
                   {t(
-                    "SkillSim is changing how people learn industry-standard tools with our unique blend of tutorials, interactive simulations, and real-world experience.",
-                    "SkillSim টিউটোরিয়াল, ইন্টারঅ্যাকটিভ সিমুলেশন, এবং বাস্তব অভিজ্ঞতার অনন্য মিশ্রণের মাধ্যমে লোকেরা কিভাবে ইন্ডাস্ট্রি-স্ট্যান্ডার্ড টুল শিখে তা পরিবর্তন করছে।"
+                    "SkillSim is changing how professionals master industry-standard skills with our unique blend of tutorials, interactive simulations, and real-world experience.",
+                    "SkillSim টিউটোরিয়াল, ইন্টারঅ্যাকটিভ সিমুলেশন, এবং বাস্তব অভিজ্ঞতার অনন্য মিশ্রণের মাধ্যমে পেশাদাররা কিভাবে ইন্ডাস্ট্রি-স্ট্যান্ডার্ড দক্ষতা আয়ত্ত করে তা পরিবর্তন করছে।"
                   )}
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-6">

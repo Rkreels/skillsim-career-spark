@@ -87,19 +87,21 @@ const AnimatedBackground: React.FC = () => {
           {renderIcon(item.type)}
         </div>
       ))}
-      <style jsx>{`
-        @keyframes float {
-          0% {
-            transform: translateY(0px) translateX(0px);
+      <style>
+        {`
+          @keyframes float {
+            0% {
+              transform: translateY(0px) translateX(0px);
+            }
+            50% {
+              transform: translateY(-20px) translateX(10px);
+            }
+            100% {
+              transform: translateY(0px) translateX(0px);
+            }
           }
-          50% {
-            transform: translateY(-20px) translateX(10px);
-          }
-          100% {
-            transform: translateY(0px) translateX(0px);
-          }
-        }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 };
