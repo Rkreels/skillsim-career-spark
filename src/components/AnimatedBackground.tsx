@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import {
   Briefcase,
@@ -10,18 +11,18 @@ import {
   Database,
   Server,
   HardDrive,
-  Projects,
-  Tasks,
-  Finance,
-  Leads,
-  Invoice,
-  Tax,
-  Payroll,
-  Hr,
-  Supply,
-  Inventory,
-  Analytics,
-  Reports
+  Projector,
+  CheckSquare,
+  DollarSign,
+  UserPlus,
+  Receipt,
+  Calculator,
+  CreditCard,
+  UserCog,
+  TruckDelivery,
+  Package,
+  PieChart,
+  ClipboardList
 } from 'lucide-react';
 
 interface AnimationItem {
@@ -249,7 +250,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-yellow-600/70 dark:text-yellow-300/70">Tasks</div>
               </div>
               <div className="mt-8 space-y-3">
-                <Tasks className={`${commonClasses} text-yellow-500/80 h-8 w-8 mb-2 mx-auto`} />
+                <CheckSquare className={`${commonClasses} text-yellow-500/80 h-8 w-8 mb-2 mx-auto`} />
                 <div className="flex items-center">
                   <div className="w-4 h-4 rounded-sm border border-yellow-500/70 flex items-center justify-center">
                     <div className="w-2 h-2 bg-yellow-500/70 rounded-sm"></div>
@@ -275,7 +276,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-blue-600/70 dark:text-blue-300/70">Leads</div>
               </div>
               <div className="mt-8 flex flex-col items-center">
-                <Leads className={`${commonClasses} text-blue-500/80 h-8 w-8 mb-2`} />
+                <UserPlus className={`${commonClasses} text-blue-500/80 h-8 w-8 mb-2`} />
                 <div className="h-2 w-20 bg-blue-300/50 rounded-full mb-2"></div>
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <div className="h-6 w-full bg-blue-300/30 rounded-sm"></div>
@@ -296,7 +297,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-purple-600/70 dark:text-purple-300/70">Invoice</div>
               </div>
               <div className="mt-8 flex flex-col items-center">
-                <Invoice className={`${commonClasses} text-purple-500/80 h-8 w-8 mb-2`} />
+                <Receipt className={`${commonClasses} text-purple-500/80 h-8 w-8 mb-2`} />
                 <div className="h-2 w-20 bg-purple-300/50 rounded-full mb-2"></div>
                 <div className="grid grid-cols-3 gap-1 w-full">
                   <div className="h-2 w-full bg-purple-300/40 rounded-full"></div>
@@ -318,7 +319,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-green-600/70 dark:text-green-300/70">Tax</div>
               </div>
               <div className="mt-8 flex flex-col items-center">
-                <Tax className={`${commonClasses} text-green-500/80 h-8 w-8 mb-2`} />
+                <Calculator className={`${commonClasses} text-green-500/80 h-8 w-8 mb-2`} />
                 <div className="flex justify-between w-full">
                   <div className="h-2 w-8 bg-green-400/50 rounded-full"></div>
                   <div className="h-2 w-12 bg-green-300/50 rounded-full"></div>
@@ -339,7 +340,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-red-600/70 dark:text-red-300/70">Payroll</div>
               </div>
               <div className="mt-8 flex flex-col items-center">
-                <Payroll className={`${commonClasses} text-red-500/80 h-8 w-8 mb-2`} />
+                <CreditCard className={`${commonClasses} text-red-500/80 h-8 w-8 mb-2`} />
                 <div className="grid grid-cols-3 gap-1 w-full">
                   <div className="h-6 w-full bg-red-300/30 rounded-md"></div>
                   <div className="h-6 w-full bg-red-300/30 rounded-md"></div>
@@ -360,7 +361,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-orange-600/70 dark:text-orange-300/70">New Hire</div>
               </div>
               <div className="mt-8 flex flex-col items-center">
-                <Hr className={`${commonClasses} text-orange-500/80 h-8 w-8 mb-2`} />
+                <UserCog className={`${commonClasses} text-orange-500/80 h-8 w-8 mb-2`} />
                 <div className="h-2 w-20 bg-orange-300/50 rounded-full mb-2"></div>
                 <div className="h-2 w-16 bg-orange-400/50 rounded-full"></div>
               </div>
@@ -398,7 +399,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-indigo-600/70 dark:text-indigo-300/70">Supply Chain</div>
               </div>
               <div className="mt-8 flex flex-col items-center">
-                <Supply className={`${commonClasses} text-indigo-500/80 h-8 w-8 mb-2`} />
+                <TruckDelivery className={`${commonClasses} text-indigo-500/80 h-8 w-8 mb-2`} />
                 <div className="w-full h-6 flex justify-between">
                   <div className="h-2 w-2 bg-indigo-400/70 rounded-full self-start"></div>
                   <div className="h-2 w-16 bg-indigo-300/50 rounded-full self-center"></div>
@@ -419,7 +420,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-cyan-600/70 dark:text-cyan-300/70">Inventory</div>
               </div>
               <div className="mt-8 flex flex-col items-center">
-                <Inventory className={`${commonClasses} text-cyan-500/80 h-8 w-8 mb-2`} />
+                <Package className={`${commonClasses} text-cyan-500/80 h-8 w-8 mb-2`} />
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <div className="h-4 w-full bg-cyan-300/40 rounded-sm"></div>
                   <div className="h-4 w-full bg-cyan-400/40 rounded-sm"></div>
@@ -439,7 +440,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-amber-600/70 dark:text-amber-300/70">Reports</div>
               </div>
               <div className="mt-8 flex flex-col items-center">
-                <Reports className={`${commonClasses} text-amber-500/80 h-8 w-8 mb-2`} />
+                <ClipboardList className={`${commonClasses} text-amber-500/80 h-8 w-8 mb-2`} />
                 <div className="h-2 w-20 bg-amber-300/50 rounded-full mb-2"></div>
                 <div className="grid grid-cols-1 gap-1 w-full">
                   <div className="h-2 w-full bg-amber-300/40 rounded-full"></div>
