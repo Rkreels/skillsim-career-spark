@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -178,7 +177,6 @@ const Index = () => {
     },
   ];
 
-  // Function to scroll to section
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -190,13 +188,7 @@ const Index = () => {
     <div className="flex flex-col min-h-screen">
       <EarlyAccessBanner />
       <Navbar />
-      
-      <main className="flex-grow relative">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <AnimatedBackground />
-        </div>
-        
-        {/* Hero Section */}
+      <main className="flex-grow relative overflow-visible">
         <section className="py-16 md:py-24 relative z-10">
           <div className="container mx-auto px-4 md:px-6 text-center relative">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-skill-blue to-skill-green bg-clip-text text-transparent">
@@ -232,7 +224,8 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Join the Revolution Section */}
+        <AnimatedBackground />
+        
         <section className="py-16 bg-gradient-to-br from-skill-blue to-skill-green text-white relative z-10">
           <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col lg:flex-row gap-12">
@@ -246,7 +239,7 @@ const Index = () => {
                 <p className="text-lg mb-6">
                   {t(
                     "SkillSim is changing how professionals learn industry-standard tools and processes with our unique blend of tutorials, interactive simulations, and real-world experience.",
-                    "SkillSim টিউটোরিয়াল, ইন্টারঅ্যাকটিভ সিমুলেশন, এবং বাস্তব অভিজ্ঞতার অনন্য মিশ্রণের মাধ্যমে পেশাদাররা কিভাবে ইন্ডাস্ট্রি-স্ট্যান্ডার্ড টুল এবং প্রক্রিয়া শিখে তা পরিবর্তন করছে।"
+                    "SkillSim টিউটোরিয়াল, ইন্টারঅ্যাক্টিভ সিমুলেশন, এবং বাস্তব অভিজ্ঞতার অনন্য মিশ্রণের মাধ্যমে পেশাদাররা কিভাবে ইন্ডাস্ট্রি-স্ট্যান্ডার্ড টুল এবং প্রক্রিয়া শিখে তা পরিবর্তন করছে।"
                   )}
                 </p>
               </div>
@@ -275,7 +268,8 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Why SkillSim Section */}
+        <AnimatedBackground />
+        
         <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="why-skillsim">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -296,7 +290,8 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Who Should Enroll Section */}
+        <AnimatedBackground />
+        
         <section className="py-16 relative z-10" id="careers">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -319,7 +314,8 @@ const Index = () => {
           </div>
         </section>
         
-        {/* How It Works Section */}
+        <AnimatedBackground />
+        
         <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="how-it-works">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -343,11 +339,12 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Why Now Section */}
+        <AnimatedBackground />
+        
         <section className="py-16 relative z-10" id="why-now">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t("Why Now?", "কেন এখন?")}
+              {t("Why Now?", "কেন ��খন?")}
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {whyNow.map((item, index) => (
@@ -366,7 +363,8 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Pricing Section */}
+        <AnimatedBackground />
+        
         <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="pricing">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -406,6 +404,7 @@ const Index = () => {
             </div>
           </div>
         </section>
+        <AnimatedBackground />
       </main>
       
       <Footer />

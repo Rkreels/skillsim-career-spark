@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import {
   Briefcase,
@@ -31,24 +32,25 @@ const AnimatedBackground: React.FC = () => {
     const generateItems = () => {
       const newItems: AnimationItem[] = [];
       const types = ['finance', 'project', 'analytics', 'hr', 'database'];
-      
-      // Reduce number of icons to 8 for better visualization
       for (let i = 0; i < 8; i++) {
         newItems.push({
           id: i,
           type: types[Math.floor(Math.random() * types.length)] as 'finance' | 'project' | 'analytics' | 'hr' | 'database',
           left: `${Math.random() * 90}%`,
-          top: `${Math.random() * 80}%`,
-          duration: 15 + Math.random() * 10, // Slower animation for more floating effect
+          // Use random vertical "spreading" so bubbles are along the full content!
+          top: `${Math.random() * 300 + window.scrollY}px`,
+          duration: 15 + Math.random() * 10,
           delay: Math.random() * 5,
-          scale: 0.7 + Math.random() * 0.4, // Varied sizing
+          scale: 0.7 + Math.random() * 0.4,
         });
       }
-      
       setItems(newItems);
     };
-    
     generateItems();
+    // Regenerate on scroll so bubbles reposition dynamically throughout the page
+    const onScroll = () => generateItems();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const renderIcon = (type: string) => {
@@ -186,7 +188,11 @@ const AnimatedBackground: React.FC = () => {
   };
 
   return (
-    <div aria-hidden="true" className="w-full h-0 min-h-[500px] absolute left-0 top-0 z-10">
+    <div
+      aria-hidden="true"
+      className="relative w-full h-0 pointer-events-none z-30"
+      style={{ minHeight: '0' }}
+    >
       {items.map(item => (
         <div
           key={item.id}
@@ -197,7 +203,7 @@ const AnimatedBackground: React.FC = () => {
             transform: `scale(${item.scale})`,
             animation: `float-bubble-${item.id} ${item.duration}s ease-in-out infinite`,
             animationDelay: `${item.delay}s`,
-            zIndex: 12,
+            zIndex: 32,
           }}
         >
           {renderIcon(item.type)}
