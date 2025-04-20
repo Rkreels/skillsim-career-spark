@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import {
   Briefcase,
@@ -187,17 +186,18 @@ const AnimatedBackground: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 overflow-hidden z-10 pointer-events-none">
+    <div aria-hidden="true" className="w-full h-0 min-h-[500px] absolute left-0 top-0 z-10">
       {items.map(item => (
         <div
           key={item.id}
-          className="fixed opacity-40 hover:opacity-60 transition-opacity duration-500 shadow-lg"
+          className="absolute opacity-40 transition-opacity duration-700"
           style={{
             left: item.left,
             top: item.top,
             transform: `scale(${item.scale})`,
-            animation: `float-${item.id} ${item.duration}s ease-in-out infinite`,
+            animation: `float-bubble-${item.id} ${item.duration}s ease-in-out infinite`,
             animationDelay: `${item.delay}s`,
+            zIndex: 12,
           }}
         >
           {renderIcon(item.type)}
@@ -206,18 +206,18 @@ const AnimatedBackground: React.FC = () => {
 
       <style>
         {items.map(item => `
-          @keyframes float-${item.id} {
+          @keyframes float-bubble-${item.id} {
             0% {
               transform: translate(0, 0) scale(${item.scale});
             }
             25% {
-              transform: translate(${10 + Math.random() * 15}px, ${-20 - Math.random() * 15}px) scale(${item.scale});
+              transform: translate(${10 + Math.random() * 15}px, ${-25 - Math.random() * 22}px) scale(${item.scale});
             }
             50% {
-              transform: translate(${20 + Math.random() * 10}px, ${Math.random() * 10}px) scale(${item.scale});
+              transform: translate(${24 + Math.random() * 13}px, ${Math.random() * 20}px) scale(${item.scale});
             }
             75% {
-              transform: translate(${-10 - Math.random() * 15}px, ${10 + Math.random() * 15}px) scale(${item.scale});
+              transform: translate(${-12 - Math.random() * 20}px, ${17 + Math.random() * 15}px) scale(${item.scale});
             }
             100% {
               transform: translate(0, 0) scale(${item.scale});
