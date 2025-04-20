@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import {
   Briefcase,
@@ -19,7 +18,7 @@ import {
   Calculator,
   CreditCard,
   UserCog,
-  TruckDelivery,
+  Truck,
   Package,
   PieChart,
   ClipboardList
@@ -399,7 +398,7 @@ const AnimatedBackground: React.FC = () => {
                 <div className="ml-auto text-xs text-indigo-600/70 dark:text-indigo-300/70">Supply Chain</div>
               </div>
               <div className="mt-8 flex flex-col items-center">
-                <TruckDelivery className={`${commonClasses} text-indigo-500/80 h-8 w-8 mb-2`} />
+                <Truck className={`${commonClasses} text-indigo-500/80 h-8 w-8 mb-2`} />
                 <div className="w-full h-6 flex justify-between">
                   <div className="h-2 w-2 bg-indigo-400/70 rounded-full self-start"></div>
                   <div className="h-2 w-16 bg-indigo-300/50 rounded-full self-center"></div>
