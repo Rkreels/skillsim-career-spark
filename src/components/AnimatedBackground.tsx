@@ -33,16 +33,16 @@ const AnimatedBackground: React.FC = () => {
       const newItems: AnimationItem[] = [];
       const types = ['finance', 'project', 'analytics', 'hr', 'database'];
       
-      // Reduce number of icons from 20 to 12
-      for (let i = 0; i < 12; i++) {
+      // Reduce number of icons to 8 for better visualization
+      for (let i = 0; i < 8; i++) {
         newItems.push({
           id: i,
           type: types[Math.floor(Math.random() * types.length)] as 'finance' | 'project' | 'analytics' | 'hr' | 'database',
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          duration: 20 + Math.random() * 15, // Slower animation for more floating effect
-          delay: Math.random() * 10,
-          scale: 0.8 + Math.random() * 0.6, // Varied sizing
+          left: `${Math.random() * 90}%`,
+          top: `${Math.random() * 80}%`,
+          duration: 15 + Math.random() * 10, // Slower animation for more floating effect
+          delay: Math.random() * 5,
+          scale: 0.7 + Math.random() * 0.4, // Varied sizing
         });
       }
       
@@ -187,45 +187,44 @@ const AnimatedBackground: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-        {items.map(item => (
-          <div
-            key={item.id}
-            className="absolute opacity-40 hover:opacity-50 transition-opacity duration-1000"
-            style={{
-              left: item.left,
-              top: item.top,
-              transform: `scale(${item.scale})`,
-              animation: `
-                float-x ${item.duration}s ease-in-out infinite alternate,
-                float-y ${item.duration * 1.2}s ease-in-out infinite alternate-reverse
-              `,
-              animationDelay: `${item.delay}s`,
-            }}
-          >
-            {renderIcon(item.type)}
-          </div>
-        ))}
-      </div>
-      <style jsx>{`
-        @keyframes float-x {
-          0% {
-            transform: translateX(-20px) scale(var(--scale, ${item => item.scale}));
+    <div className="fixed inset-0 overflow-hidden z-10 pointer-events-none">
+      {items.map(item => (
+        <div
+          key={item.id}
+          className="fixed opacity-40 hover:opacity-60 transition-opacity duration-500 shadow-lg"
+          style={{
+            left: item.left,
+            top: item.top,
+            transform: `scale(${item.scale})`,
+            animation: `float-${item.id} ${item.duration}s ease-in-out infinite`,
+            animationDelay: `${item.delay}s`,
+          }}
+        >
+          {renderIcon(item.type)}
+        </div>
+      ))}
+
+      <style>
+        {items.map(item => `
+          @keyframes float-${item.id} {
+            0% {
+              transform: translate(0, 0) scale(${item.scale});
+            }
+            25% {
+              transform: translate(${10 + Math.random() * 15}px, ${-20 - Math.random() * 15}px) scale(${item.scale});
+            }
+            50% {
+              transform: translate(${20 + Math.random() * 10}px, ${Math.random() * 10}px) scale(${item.scale});
+            }
+            75% {
+              transform: translate(${-10 - Math.random() * 15}px, ${10 + Math.random() * 15}px) scale(${item.scale});
+            }
+            100% {
+              transform: translate(0, 0) scale(${item.scale});
+            }
           }
-          100% {
-            transform: translateX(20px) scale(var(--scale, ${item => item.scale}));
-          }
-        }
-        @keyframes float-y {
-          0% {
-            transform: translateY(-15px) scale(var(--scale, ${item => item.scale}));
-          }
-          100% {
-            transform: translateY(15px) scale(var(--scale, ${item => item.scale}));
-          }
-        }
-      `}</style>
+        `).join('')}
+      </style>
     </div>
   );
 };
