@@ -82,7 +82,9 @@ const Index = () => {
     },
     {
       titleEn: "Earn credentials employers recognize, customized to your role",
-      titleBn: "নিয়োগকর্তারা স্বীকৃত, আপনার ভূমিকার জন্য কাস্টমাইজড ক্রেডেনশিয়াল অর্জন করুন",
+      titleBn: "নিয়োগকর্তারা যেসব সার্টিফিকেট বিশ্বাস করে, সেগুলো অর্জন করুন",
+      descriptionEn: "Showcase verifiable skills on your resume and LinkedIn.",
+      descriptionBn: "আপনার রেজুমে এবং লিংকডইনে যাচাইযোগ্য দক্ষতা প্রদর্শন করুন।",
     },
   ];
 
@@ -188,6 +190,7 @@ const Index = () => {
     <div className="flex flex-col min-h-screen">
       <EarlyAccessBanner />
       <Navbar />
+      <AnimatedBackground />
       <main className="flex-grow relative overflow-visible">
         <section className="py-16 md:py-24 relative z-10">
           <div className="container mx-auto px-4 md:px-6 text-center relative">
@@ -223,8 +226,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
-        <AnimatedBackground />
         
         <section className="py-16 bg-gradient-to-br from-skill-blue to-skill-green text-white relative z-10">
           <div className="container mx-auto px-4 md:px-6">
@@ -268,8 +269,6 @@ const Index = () => {
           </div>
         </section>
         
-        <AnimatedBackground />
-        
         <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="why-skillsim">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -289,8 +288,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
-        <AnimatedBackground />
         
         <section className="py-16 relative z-10" id="careers">
           <div className="container mx-auto px-4 md:px-6">
@@ -313,8 +310,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
-        <AnimatedBackground />
         
         <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="how-it-works">
           <div className="container mx-auto px-4 md:px-6">
@@ -339,8 +334,6 @@ const Index = () => {
           </div>
         </section>
         
-        <AnimatedBackground />
-        
         <section className="py-16 relative z-10" id="why-now">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -362,8 +355,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
-        <AnimatedBackground />
         
         <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="pricing">
           <div className="container mx-auto px-4 md:px-6">
@@ -404,7 +395,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-        <AnimatedBackground />
       </main>
       
       <Footer />

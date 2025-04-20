@@ -10,9 +10,7 @@ import {
   LineChart,
   Database,
   Server,
-  HardDrive,
-  Laptop,
-  Monitor
+  HardDrive
 } from 'lucide-react';
 
 interface AnimationItem {
@@ -32,13 +30,15 @@ const AnimatedBackground: React.FC = () => {
     const generateItems = () => {
       const newItems: AnimationItem[] = [];
       const types = ['finance', 'project', 'analytics', 'hr', 'database'];
-      for (let i = 0; i < 8; i++) {
+      const pageHeight = document.body.scrollHeight;
+      
+      for (let i = 0; i < 12; i++) {
         newItems.push({
           id: i,
           type: types[Math.floor(Math.random() * types.length)] as 'finance' | 'project' | 'analytics' | 'hr' | 'database',
           left: `${Math.random() * 90}%`,
-          // Use random vertical "spreading" so bubbles are along the full content!
-          top: `${Math.random() * 300 + window.scrollY}px`,
+          // Distribute bubbles throughout the page height
+          top: `${Math.random() * pageHeight}px`,
           duration: 15 + Math.random() * 10,
           delay: Math.random() * 5,
           scale: 0.7 + Math.random() * 0.4,
@@ -46,11 +46,21 @@ const AnimatedBackground: React.FC = () => {
       }
       setItems(newItems);
     };
+    
     generateItems();
-    // Regenerate on scroll so bubbles reposition dynamically throughout the page
-    const onScroll = () => generateItems();
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    
+    // Regenerate on scroll to reposition elements
+    const handleScroll = () => {
+      generateItems();
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', generateItems);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', generateItems);
+    };
   }, []);
 
   const renderIcon = (type: string) => {
@@ -188,22 +198,18 @@ const AnimatedBackground: React.FC = () => {
   };
 
   return (
-    <div
-      aria-hidden="true"
-      className="relative w-full h-0 pointer-events-none z-30"
-      style={{ minHeight: '0' }}
-    >
+    <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-50">
       {items.map(item => (
         <div
           key={item.id}
-          className="absolute opacity-40 transition-opacity duration-700"
+          className="absolute pointer-events-none"
           style={{
             left: item.left,
             top: item.top,
             transform: `scale(${item.scale})`,
             animation: `float-bubble-${item.id} ${item.duration}s ease-in-out infinite`,
             animationDelay: `${item.delay}s`,
-            zIndex: 32,
+            zIndex: 51,
           }}
         >
           {renderIcon(item.type)}
