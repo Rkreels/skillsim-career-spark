@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import {
   Briefcase,
@@ -468,6 +467,28 @@ const AnimatedBackground: React.FC = () => {
     }
   };
 
+  const generateAnimationStyles = () => {
+    return items.map(item => `
+      @keyframes float-bubble-${item.id} {
+        0% {
+          transform: translate(0, 0) scale(${item.scale});
+        }
+        25% {
+          transform: translate(${10 + Math.random() * 15}px, ${-25 - Math.random() * 22}px) scale(${item.scale});
+        }
+        50% {
+          transform: translate(${24 + Math.random() * 13}px, ${Math.random() * 20}px) scale(${item.scale});
+        }
+        75% {
+          transform: translate(${-12 - Math.random() * 20}px, ${17 + Math.random() * 15}px) scale(${item.scale});
+        }
+        100% {
+          transform: translate(0, 0) scale(${item.scale});
+        }
+      }
+    `).join('');
+  };
+
   return (
     <div className="absolute inset-0 w-full h-full overflow-visible pointer-events-none z-50">
       {items.map(item => (
@@ -488,31 +509,13 @@ const AnimatedBackground: React.FC = () => {
         </div>
       ))}
 
-      <style>
-        {items.map(item => `
-          @keyframes float-bubble-${item.id} {
-            0% {
-              transform: translate(0, 0) scale(${item.scale});
-            }
-            25% {
-              transform: translate(${10 + Math.random() * 15}px, ${-25 - Math.random() * 22}px) scale(${item.scale});
-            }
-            50% {
-              transform: translate(${24 + Math.random() * 13}px, ${Math.random() * 20}px) scale(${item.scale});
-            }
-            75% {
-              transform: translate(${-12 - Math.random() * 20}px, ${17 + Math.random() * 15}px) scale(${item.scale});
-            }
-            100% {
-              transform: translate(0, 0) scale(${item.scale});
-            }
-          }
-        `).join('')}
+      <style dangerouslySetInnerHTML={{ __html: `
+        ${generateAnimationStyles()}
         
         .paused {
           animation-play-state: paused !important;
         }
-      </style>
+      `}} />
     </div>
   );
 };
