@@ -58,42 +58,42 @@ const AnimatedBackground: React.FC = () => {
     switch (type) {
       case 'finance':
         return (
-          <div className="w-24 h-24 bg-blue-100/10 dark:bg-blue-900/10 rounded-lg flex items-center justify-center group">
+          <div className="w-24 h-24 bg-blue-100/30 dark:bg-blue-900/30 rounded-lg flex items-center justify-center group">
             <div className="grid grid-cols-2 gap-2 p-2">
-              <DollarSign className={`${commonClasses} text-blue-500/20 group-hover:text-blue-500/30 transition-colors`} />
-              <Wallet className={`${commonClasses} text-blue-500/10 group-hover:text-blue-500/20 transition-colors`} />
-              <FileSpreadsheet className={`${commonClasses} text-blue-500/15 group-hover:text-blue-500/25 transition-colors`} />
-              <Receipt className={`${commonClasses} text-blue-500/20 group-hover:text-blue-500/30 transition-colors`} />
+              <DollarSign className={`${commonClasses} text-blue-500/60 group-hover:text-blue-500/70 transition-colors`} />
+              <Wallet className={`${commonClasses} text-blue-500/50 group-hover:text-blue-500/60 transition-colors`} />
+              <FileSpreadsheet className={`${commonClasses} text-blue-500/55 group-hover:text-blue-500/65 transition-colors`} />
+              <Receipt className={`${commonClasses} text-blue-500/60 group-hover:text-blue-500/70 transition-colors`} />
             </div>
           </div>
         );
       case 'project':
         return (
-          <div className="w-28 h-20 bg-green-100/10 dark:bg-green-900/10 rounded-lg p-3">
+          <div className="w-28 h-20 bg-green-100/30 dark:bg-green-900/30 rounded-lg p-3">
             <div className="flex flex-col space-y-2">
-              <Briefcase className={`${commonClasses} text-green-500/20 group-hover:text-green-500/30 transition-colors`} />
-              <FileText className={`${commonClasses} text-green-500/15 group-hover:text-green-500/25 transition-colors`} />
+              <Briefcase className={`${commonClasses} text-green-500/60 group-hover:text-green-500/70 transition-colors`} />
+              <FileText className={`${commonClasses} text-green-500/55 group-hover:text-green-500/65 transition-colors`} />
             </div>
           </div>
         );
       case 'hr':
         return (
-          <div className="w-24 h-24 bg-purple-100/10 dark:bg-purple-900/10 rounded-lg p-3">
+          <div className="w-24 h-24 bg-purple-100/30 dark:bg-purple-900/30 rounded-lg p-3">
             <div className="grid grid-cols-2 gap-2">
-              <Users className={`${commonClasses} text-purple-500/20 group-hover:text-purple-500/30 transition-colors`} />
-              <UserPlus className={`${commonClasses} text-purple-500/15 group-hover:text-purple-500/25 transition-colors`} />
-              <UserCheck className={`${commonClasses} text-purple-500/20 group-hover:text-purple-500/30 transition-colors`} />
+              <Users className={`${commonClasses} text-purple-500/60 group-hover:text-purple-500/70 transition-colors`} />
+              <UserPlus className={`${commonClasses} text-purple-500/55 group-hover:text-purple-500/65 transition-colors`} />
+              <UserCheck className={`${commonClasses} text-purple-500/60 group-hover:text-purple-500/70 transition-colors`} />
             </div>
           </div>
         );
       case 'analytics':
         return (
-          <div className="w-28 h-24 bg-orange-100/10 dark:bg-orange-900/10 rounded-lg p-3">
+          <div className="w-28 h-24 bg-orange-100/30 dark:bg-orange-900/30 rounded-lg p-3">
             <div className="grid grid-cols-2 gap-2">
-              <BarChart className={`${commonClasses} text-orange-500/20 group-hover:text-orange-500/30 transition-colors`} />
-              <LineChart className={`${commonClasses} text-orange-500/15 group-hover:text-orange-500/25 transition-colors`} />
-              <Boxes className={`${commonClasses} text-orange-500/20 group-hover:text-orange-500/30 transition-colors`} />
-              <Package className={`${commonClasses} text-orange-500/15 group-hover:text-orange-500/25 transition-colors`} />
+              <BarChart className={`${commonClasses} text-orange-500/60 group-hover:text-orange-500/70 transition-colors`} />
+              <LineChart className={`${commonClasses} text-orange-500/55 group-hover:text-orange-500/65 transition-colors`} />
+              <Boxes className={`${commonClasses} text-orange-500/60 group-hover:text-orange-500/70 transition-colors`} />
+              <Package className={`${commonClasses} text-orange-500/55 group-hover:text-orange-500/65 transition-colors`} />
             </div>
           </div>
         );
@@ -108,7 +108,7 @@ const AnimatedBackground: React.FC = () => {
         {items.map(item => (
           <div
             key={item.id}
-            className="absolute opacity-10 hover:opacity-20 transition-opacity duration-1000"
+            className="absolute opacity-30 hover:opacity-40 transition-opacity duration-1000"
             style={{
               left: item.left,
               top: item.top,
@@ -145,10 +145,10 @@ const AnimatedBackground: React.FC = () => {
           }
           @keyframes pulse {
             0%, 100% {
-              opacity: 0.08;
+              opacity: 0.25;
             }
             50% {
-              opacity: 0.12;
+              opacity: 0.35;
             }
           }
         `}
