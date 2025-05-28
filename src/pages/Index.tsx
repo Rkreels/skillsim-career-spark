@@ -6,6 +6,14 @@ import { Footer } from '@/components/Footer';
 import { EarlyAccessBanner } from '@/components/EarlyAccessBanner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import AnimatedBackground from '@/components/AnimatedBackground';
 
 // Icons
@@ -109,74 +117,18 @@ const Index = () => {
     },
   ];
 
-  const pricing = [
-    {
-      titleEn: "Free",
-      titleBn: "ফ্রি",
-      priceEn: "$0",
-      priceBn: "৳0",
-      featuresEn: [
-        "Access to 3 basic simulations",
-        "Community support",
-        "Limited progress tracking",
-      ],
-      featuresBn: [
-        "৩টি মৌলিক সিমুলেশনে অ্যাক্সেস",
-        "কমিউনিটি সাপোর্ট",
-        "সীমিত অগ্রগতি ট্র্যাকিং",
-      ],
-      ctaEn: "Get Started",
-      ctaBn: "শুরু করুন",
-      highlight: false,
-    },
-    {
-      titleEn: "Pro",
-      titleBn: "প্রো",
-      priceEn: "$29/month",
-      priceBn: "৳999/মাস",
-      featuresEn: [
-        "Full access to all simulations",
-        "Personalized learning path",
-        "Certificate upon completion",
-        "Priority support",
-      ],
-      featuresBn: [
-        "সব সিমুলেশনে সম্পূর্ণ অ্যাক্সেস",
-        "ব্যক্তিগতকৃত শেখার পথ",
-        "সমাপ্তির পর সার্টিফিকেট",
-        "অগ্রাধিকার সহায়তা",
-      ],
-      ctaEn: "Go Pro",
-      ctaBn: "প্রো নিন",
-      highlight: true,
-      badge: {
-        en: "Bangladesh Special Rate",
-        bn: "বাংলাদেশ স্পেশাল রেট",
-      },
-    },
-    {
-      titleEn: "Institutional",
-      titleBn: "প্রাতিষ্ঠানিক",
-      priceEn: "Custom",
-      priceBn: "কাস্টম",
-      featuresEn: [
-        "Everything in Pro",
-        "Team management",
-        "Progress analytics",
-        "Custom simulations",
-        "Dedicated account manager",
-      ],
-      featuresBn: [
-        "প্রো-তে থাকা সবকিছু",
-        "টিম ম্যানেজমেন্ট",
-        "অগ্রগতি বিশ্লেষণ",
-        "কাস্টম সিমুলেশন",
-        "ডেডিকেটেড অ্যাকাউন্ট ম্যানেজার",
-      ],
-      ctaEn: "Contact Sales",
-      ctaBn: "সেলস এর সাথে যোগাযোগ করুন",
-      highlight: false,
-    },
+  const pricingEn = [
+    { plan: "Student", yearly: "$79", lifetime: "$199", note: "University email required" },
+    { plan: "Professional", yearly: "$149", lifetime: "$299", note: "" },
+    { plan: "Executive", yearly: "$249", lifetime: "$499", note: "" },
+    { plan: "Institutional", yearly: "—", lifetime: "Custom", note: "Corporate or EDU B2B" },
+  ];
+
+  const pricingBn = [
+    { plan: "স্টুডেন্ট", yearly: "৳1,490", lifetime: "৳2,990", note: "বিশ্ববিদ্যালয়ের ইমেইল প্রয়োজন" },
+    { plan: "প্রফেশনাল", yearly: "৳2,990", lifetime: "৳4,990", note: "" },
+    { plan: "এক্সিকিউটিভ", yearly: "৳5,990", lifetime: "৳8,990", note: "" },
+    { plan: "ইন্সটিউশনাল", yearly: "—", lifetime: "কাস্টম", note: "বিশ্ববিদ্যালয়, প্রতিষ্ঠান" },
   ];
 
   const scrollToSection = (id) => {
@@ -340,7 +292,7 @@ const Index = () => {
           <section className="py-16 relative z-10" id="why-now">
             <div className="container mx-auto px-4 md:px-6">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-                {t("Why Now?", "কেন ��খন?")}
+                {t("Why Now?", "কেন এখন?")}
               </h2>
               <div className="grid md:grid-cols-3 gap-8">
                 {whyNow.map((item, index) => (
@@ -364,37 +316,65 @@ const Index = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
                 {t("Pricing", "মূল্য")}
               </h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                {pricing.map((plan, index) => (
-                  <Card key={index} className={`skill-card ${plan.highlight ? 'border-2 border-skill-blue ring-4 ring-skill-blue/20' : ''} hover:shadow-lg transition-shadow`}>
-                    <CardContent className="p-6">
-                      {plan.badge && (
-                        <div className="mb-4">
-                          <span className="skill-badge bg-skill-green/20 text-skill-green px-2 py-1 rounded-full text-sm">
-                            {t(plan.badge.en, plan.badge.bn)}
-                          </span>
-                        </div>
-                      )}
-                      <h3 className="text-2xl font-bold mb-2">
-                        {t(plan.titleEn, plan.titleBn)}
-                      </h3>
-                      <p className="text-3xl font-bold mb-6">
-                        {t(plan.priceEn, plan.priceBn)}
-                      </p>
-                      <ul className="space-y-2 mb-6">
-                        {plan.featuresEn.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start">
-                            <Check className="h-5 w-5 text-skill-green mr-2 shrink-0 mt-0.5" />
-                            <span>{t(feature, plan.featuresBn[featureIndex])}</span>
-                          </li>
+              
+              <div className="max-w-4xl mx-auto">
+                <Card className="skill-card">
+                  <CardContent className="p-6">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="font-bold text-lg">
+                            {t("Plan", "প্ল্যান")}
+                          </TableHead>
+                          <TableHead className="font-bold text-lg text-center">
+                            {t("Yearly", "বার্ষিক")}
+                          </TableHead>
+                          <TableHead className="font-bold text-lg text-center">
+                            {t("Lifetime", "লাইফটাইম")}
+                          </TableHead>
+                          <TableHead className="font-bold text-lg text-center">
+                            {t("Note", "নোট")}
+                          </TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {(t("lang", "lang") === "en" ? pricingEn : pricingBn).map((plan, index) => (
+                          <TableRow key={index}>
+                            <TableCell className="font-semibold">{plan.plan}</TableCell>
+                            <TableCell className="text-center">{plan.yearly}</TableCell>
+                            <TableCell className="text-center">{plan.lifetime}</TableCell>
+                            <TableCell className="text-center text-sm text-gray-600 dark:text-gray-400">
+                              {plan.note}
+                            </TableCell>
+                          </TableRow>
                         ))}
-                      </ul>
-                      <Button className={plan.highlight ? 'w-full skill-button-primary' : 'w-full'}>
-                        {t(plan.ctaEn, plan.ctaBn)}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+                
+                <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <p className="text-blue-800 dark:text-blue-200 text-center font-medium">
+                    <strong>{t("Important Notice:", "গুরুত্বপূর্ণ নোটিশ:")}</strong>{" "}
+                    {t(
+                      "Student package requires signup with a university email address.",
+                      "স্টুডেন্ট প্যাকেজের জন্য বিশ্ববিদ্যালয়ের ইমেইল ঠিকানা দিয়ে সাইন আপ করতে হবে।"
+                    )}
+                  </p>
+                </div>
+                
+                <div className="mt-8 text-center">
+                  <Link to="/signup">
+                    <Button size="lg" className="skill-button-primary mr-4">
+                      {t("Get Started", "শুরু করুন")}
+                    </Button>
+                  </Link>
+                  <Link to="/contact">
+                    <Button size="lg" variant="outline" className="skill-button-secondary">
+                      {t("Contact Sales", "সেলস এর সাথে যোগাযোগ করুন")}
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </section>
