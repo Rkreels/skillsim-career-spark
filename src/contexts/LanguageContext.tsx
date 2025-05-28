@@ -24,18 +24,65 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
           return;
         }
 
-        // Try to detect location using a free IP geolocation service
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
+        // Try multiple IP geolocation services
+        const services = [
+          'https://ipapi.co/json/',
+          'https://api.ipgeolocation.io/ipgeo?apiKey=free',
+          'https://freegeoip.app/json/'
+        ];
+
+        let detected = false;
         
-        // If user is from Bangladesh, set Bengali as default
-        if (data.country_code === 'BD') {
-          setLanguage('bn');
-        } else {
-          setLanguage('en');
+        for (const service of services) {
+          try {
+            const response = await fetch(service, {
+              timeout: 5000,
+              headers: {
+                'Accept': 'application/json',
+              }
+            });
+            
+            if (response.ok) {
+              const data = await response.json();
+              console.log('Location data:', data);
+              
+              // Check for Bangladesh in different possible fields
+              const countryCode = data.country_code || data.country || data.countryCode;
+              const country = data.country_name || data.country || countryCode;
+              
+              if (countryCode === 'BD' || country === 'Bangladesh' || country === 'BD') {
+                console.log('Detected Bangladesh, setting language to Bengali');
+                setLanguage('bn');
+                localStorage.setItem('skillsim-language', 'bn');
+                detected = true;
+                break;
+              } else {
+                console.log('Detected country:', countryCode || country, 'setting to English');
+                setLanguage('en');
+                localStorage.setItem('skillsim-language', 'en');
+                detected = true;
+                break;
+              }
+            }
+          } catch (serviceError) {
+            console.log(`Service ${service} failed:`, serviceError);
+            continue;
+          }
+        }
+
+        if (!detected) {
+          // Fallback: try to detect from browser language
+          const browserLang = navigator.language || navigator.languages?.[0];
+          if (browserLang?.includes('bn') || browserLang?.includes('bd')) {
+            console.log('Browser language suggests Bengali');
+            setLanguage('bn');
+          } else {
+            console.log('Could not detect location, defaulting to English');
+            setLanguage('en');
+          }
         }
       } catch (error) {
-        console.log('Could not detect location, defaulting to English');
+        console.log('Location detection failed completely, defaulting to English', error);
         setLanguage('en');
       }
     };
@@ -47,10 +94,11 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     const newLanguage = language === 'en' ? 'bn' : 'en';
     setLanguage(newLanguage);
     localStorage.setItem('skillsim-language', newLanguage);
+    console.log('Language toggled to:', newLanguage);
   };
 
   const t = (en: string, bn: string): string => {
-    return language === 'en' ? en : bn;
+    return language === 'bn' ? bn : en;
   };
 
   return (

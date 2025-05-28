@@ -20,7 +20,7 @@ import AnimatedBackground from '@/components/AnimatedBackground';
 import { Briefcase, GraduationCap, Handshake, Users, ChartBar, ChartLine, Check } from 'lucide-react';
 
 const Index = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const careers = [
     {
@@ -338,7 +338,7 @@ const Index = () => {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {(t("lang", "lang") === "en" ? pricingEn : pricingBn).map((plan, index) => (
+                        {(language === 'bn' ? pricingBn : pricingEn).map((plan, index) => (
                           <TableRow key={index}>
                             <TableCell className="font-semibold">{plan.plan}</TableCell>
                             <TableCell className="text-center">{plan.yearly}</TableCell>
