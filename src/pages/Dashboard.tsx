@@ -1,87 +1,56 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useUser } from '@/contexts/UserContext';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Link } from 'react-router-dom';
+import Onboarding from '@/components/Onboarding';
+import { getRoleBasedCourses, getRoleBasedRecommendations, getRoleBasedBadges } from '@/data/dashboardData';
 
 // Icons
 import { Book, Search, User } from 'lucide-react';
 
 const Dashboard = () => {
   const { t } = useLanguage();
+  const { user, isLoading } = useUser();
   const [progress] = useState(85);
 
-  const courses = [
-    {
-      id: 1,
-      titleEn: "QuickBooks Fundamentals",
-      titleBn: "কুইকবুকস ফান্ডামেন্টালস",
-      progressPercent: 75,
-      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-    },
-    {
-      id: 2,
-      titleEn: "Excel Advanced Analytics",
-      titleBn: "এক্সেল অ্যাডভান্সড অ্যানালিটিক্স",
-      progressPercent: 40,
-      imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-    },
-    {
-      id: 3,
-      titleEn: "Jira Project Management",
-      titleBn: "জিরা প্রোজেক্ট ম্যানেজমেন্ট",
-      progressPercent: 10,
-      imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-    },
-  ];
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-skill-blue mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">{t("Loading...", "লোড হচ্ছে...")}</p>
+        </div>
+      </div>
+    );
+  }
 
-  const recommendedCourses = [
-    {
-      id: 4,
-      titleEn: "SAP Basics",
-      titleBn: "এসএপি বেসিকস",
-      descriptionEn: "Learn the fundamentals of SAP.",
-      descriptionBn: "এসএপি-এর মৌলিক বিষয়গুলো শিখুন।",
-      level: "Beginner",
-      levelBn: "শুরুকারী",
-      imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    },
-    {
-      id: 5,
-      titleEn: "Salesforce CRM",
-      titleBn: "সেলসফোর্স সিআরএম",
-      descriptionEn: "Master Salesforce customer relationship management.",
-      descriptionBn: "সেলসফোর্স কাস্টমার রিলেশনশিপ ম্যানেজমেন্ট মাস্টার করুন।",
-      level: "Intermediate",
-      levelBn: "মধ্যবর্তী",
-      imageUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    },
-  ];
+  // Show onboarding if user hasn't completed it
+  if (!user || !user.isOnboarded) {
+    return <Onboarding />;
+  }
 
-  const badges = [
-    {
-      id: 1,
-      titleEn: "Excel Master",
-      titleBn: "এক্সেল মাস্টার",
-      icon: "🏆",
-    },
-    {
-      id: 2,
-      titleEn: "Data Analyst",
-      titleBn: "ডাটা অ্যানালিস্ট",
-      icon: "📊",
-    },
-    {
-      id: 3,
-      titleEn: "10-Day Streak",
-      titleBn: "১০-দিনের স্ট্রিক",
-      icon: "🔥",
-    },
-  ];
+  // Get role-based data
+  const courses = getRoleBasedCourses(user.role);
+  const recommendedCourses = getRoleBasedRecommendations(user.role);
+  const badges = getRoleBasedBadges(user.role);
+
+  const getRoleDisplayName = () => {
+    const roleNames = {
+      hr: { en: "HR Professional", bn: "এইচআর পেশাদার" },
+      accounting: { en: "Finance Professional", bn: "ফিন্যান্স পেশাদার" },
+      sales: { en: "Sales Professional", bn: "সেলস পেশাদার" },
+      marketing: { en: "Marketing Professional", bn: "মার্কেটিং পেশাদার" },
+      operations: { en: "Operations Professional", bn: "অপারেশনস পেশাদার" },
+      management: { en: "Management Professional", bn: "ম্যানেজমেন্ট পেশাদার" }
+    };
+    return t(roleNames[user.role].en, roleNames[user.role].bn);
+  };
 
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
@@ -93,6 +62,15 @@ const Dashboard = () => {
         
         <div className="p-4">
           <div className="mb-6">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-skill-blue rounded-full flex items-center justify-center text-white font-semibold mr-3">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <p className="font-medium text-sm">{user.name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{getRoleDisplayName()}</p>
+              </div>
+            </div>
             <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
               {t("Profile Completion", "প্রোফাইল সম্পূর্ণতা")}
             </h3>
@@ -168,9 +146,16 @@ const Dashboard = () => {
         
         {/* Dashboard Content */}
         <div className="py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
-            {t("Dashboard", "ড্যাশবোর্ড")}
-          </h1>
+          <div className="flex justify-between items-center mb-6">
+            <div>
+              <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+                {t("Dashboard", "ড্যাশবোর্ড")}
+              </h1>
+              <p className="text-gray-600 dark:text-gray-400 mt-1">
+                {t("Welcome back", "স্বাগতম")}, {user.name}! {t("Continue your", "আপনার")} {user.department} {t("learning journey", "শেখার যাত্রা চালিয়ে যান")}.
+              </p>
+            </div>
+          </div>
           
           <div className="mt-6">
             <div className="mb-8">
@@ -224,12 +209,9 @@ const Dashboard = () => {
                         <h3 className="font-medium mb-1">
                           {t(course.titleEn, course.titleBn)}
                         </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                          {t(course.descriptionEn, course.descriptionBn)}
-                        </p>
-                        <div className="flex justify-between items-center">
+                        <div className="flex justify-between items-center mt-4">
                           <span className="skill-badge bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                            {t(course.level, course.levelBn)}
+                            {t("Recommended", "প্রস্তাবিত")}
                           </span>
                           <Button variant="outline" size="sm">
                             {t("Start", "শুরু করুন")}
