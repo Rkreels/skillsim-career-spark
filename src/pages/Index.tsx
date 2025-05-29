@@ -231,7 +231,7 @@ const Index = () => {
                 )}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-                <Link to="/signup">
+                <Link to="/select-role">
                   <Button size="lg" className="skill-button-primary">
                     {t("Start Your Career Journey", "আপনার ক্যারিয়ার যাত্রা শুরু করুন")}
                   </Button>
@@ -460,7 +460,7 @@ const Index = () => {
                 </div>
                 
                 <div className="mt-8 text-center">
-                  <Link to="/signup">
+                  <Link to="/select-role">
                     <Button size="lg" className="skill-button-primary mr-4">
                       {t("Get Started", "শুরু করুন")}
                     </Button>
