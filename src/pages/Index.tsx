@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -14,10 +15,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import AnimatedBackground from '@/components/AnimatedBackground';
 
 // Icons
-import { Briefcase, GraduationCap, Handshake, Users, ChartBar, ChartLine, Check } from 'lucide-react';
+import { Briefcase, GraduationCap, Handshake, Users, ChartBar, ChartLine, Check, Info, Crown, Star } from 'lucide-react';
 
 const Index = () => {
   const { t, language } = useLanguage();
@@ -118,17 +125,73 @@ const Index = () => {
   ];
 
   const pricingEn = [
-    { plan: "Student", yearly: "$79", lifetime: "$199", note: "University email required" },
-    { plan: "Professional", yearly: "$149", lifetime: "$299", note: "" },
-    { plan: "Executive", yearly: "$249", lifetime: "$499", note: "" },
-    { plan: "Institutional", yearly: "—", lifetime: "Custom", note: "Corporate or EDU B2B" },
+    { 
+      plan: "Student", 
+      yearly: "$79", 
+      lifetime: "$199", 
+      access: "Role-based access",
+      features: ["Basic certifications", "Essential tools", "Community support"],
+      tooltip: "University email required"
+    },
+    { 
+      plan: "Professional", 
+      yearly: "$149", 
+      lifetime: "$299", 
+      access: "Role-based access",
+      features: ["Advanced certifications", "Premium tools", "Priority support", "Career coaching"],
+      tooltip: ""
+    },
+    { 
+      plan: "Executive", 
+      yearly: "$249", 
+      lifetime: "$499", 
+      access: "Master access to all roles",
+      features: ["All certifications", "Complete toolset", "VIP support", "1-on-1 mentorship", "Industry networking"],
+      tooltip: ""
+    },
+    { 
+      plan: "Institutional", 
+      yearly: "—", 
+      lifetime: "Custom", 
+      access: "Custom access control",
+      features: ["Bulk licenses", "Admin dashboard", "Custom branding", "Dedicated success manager"],
+      tooltip: "Corporate or EDU B2B"
+    },
   ];
 
   const pricingBn = [
-    { plan: "স্টুডেন্ট", yearly: "৳1,490", lifetime: "৳2,990", note: "বিশ্ববিদ্যালয়ের ইমেইল প্রয়োজন" },
-    { plan: "প্রফেশনাল", yearly: "৳2,990", lifetime: "৳4,990", note: "" },
-    { plan: "এক্সিকিউটিভ", yearly: "৳5,990", lifetime: "৳8,990", note: "" },
-    { plan: "ইন্সটিউশনাল", yearly: "—", lifetime: "কাস্টম", note: "বিশ্ববিদ্যালয়, প্রতিষ্ঠান" },
+    { 
+      plan: "স্টুডেন্ট", 
+      yearly: "৳1,490", 
+      lifetime: "৳2,990", 
+      access: "ভূমিকা-ভিত্তিক অ্যাক্সেস",
+      features: ["মৌলিক সার্টিফিকেশন", "প্রয়োজনীয় টুলস", "কমিউনিটি সাপোর্ট"],
+      tooltip: "বিশ্ববিদ্যালয়ের ইমেইল প্রয়োজন"
+    },
+    { 
+      plan: "প্রফেশনাল", 
+      yearly: "৳2,990", 
+      lifetime: "৳4,990", 
+      access: "ভূমিকা-ভিত্তিক অ্যাক্সেস",
+      features: ["উন্নত সার্টিফিকেশন", "প্রিমিয়াম টুলস", "অগ্রাধিকার সাপোর্ট", "ক্যারিয়ার কোচিং"],
+      tooltip: ""
+    },
+    { 
+      plan: "এক্সিকিউটিভ", 
+      yearly: "৳5,990", 
+      lifetime: "৳8,990", 
+      access: "সব ভূমিকায় মাস্টার অ্যাক্সেস",
+      features: ["সকল সার্টিফিকেশন", "সম্পূর্ণ টুলসেট", "ভিআইপি সাপোর্ট", "১-অন-১ মেন্টরশিপ", "ইন্ডাস্ট্রি নেটওয়ার্কিং"],
+      tooltip: ""
+    },
+    { 
+      plan: "ইন্সটিউশনাল", 
+      yearly: "—", 
+      lifetime: "কাস্টম", 
+      access: "কাস্টম অ্যাক্সেস কন্ট্রোল",
+      features: ["বাল্ক লাইসেন্স", "অ্যাডমিন ড্যাশবোর্ড", "কাস্টম ব্র্যান্ডিং", "ডেডিকেটেড সাকসেস ম্যানেজার"],
+      tooltip: "বিশ্ববিদ্যালয়, প্রতিষ্ঠান"
+    },
   ];
 
   const scrollToSection = (id) => {
@@ -317,39 +380,72 @@ const Index = () => {
                 {t("Pricing", "মূল্য")}
               </h2>
               
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-6xl mx-auto">
                 <Card className="skill-card">
                   <CardContent className="p-6">
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead className="font-bold text-lg">
-                            {t("Plan", "প্ল্যান")}
-                          </TableHead>
-                          <TableHead className="font-bold text-lg text-center">
-                            {t("Yearly", "বার্ষিক")}
-                          </TableHead>
-                          <TableHead className="font-bold text-lg text-center">
-                            {t("Lifetime", "লাইফটাইম")}
-                          </TableHead>
-                          <TableHead className="font-bold text-lg text-center">
-                            {t("Note", "নোট")}
-                          </TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {(language === 'bn' ? pricingBn : pricingEn).map((plan, index) => (
-                          <TableRow key={index}>
-                            <TableCell className="font-semibold">{plan.plan}</TableCell>
-                            <TableCell className="text-center">{plan.yearly}</TableCell>
-                            <TableCell className="text-center">{plan.lifetime}</TableCell>
-                            <TableCell className="text-center text-sm text-gray-600 dark:text-gray-400">
-                              {plan.note}
-                            </TableCell>
+                    <TooltipProvider>
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead className="font-bold text-lg">
+                              {t("Plan", "প্ল্যান")}
+                            </TableHead>
+                            <TableHead className="font-bold text-lg text-center">
+                              {t("Yearly", "বার্ষিক")}
+                            </TableHead>
+                            <TableHead className="font-bold text-lg text-center">
+                              {t("Lifetime", "লাইফটাইম")}
+                            </TableHead>
+                            <TableHead className="font-bold text-lg text-center">
+                              {t("Access Level", "অ্যাক্সেস লেভেল")}
+                            </TableHead>
+                            <TableHead className="font-bold text-lg text-center">
+                              {t("Key Features", "মূল বৈশিষ্ট্য")}
+                            </TableHead>
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
+                        </TableHeader>
+                        <TableBody>
+                          {(language === 'bn' ? pricingBn : pricingEn).map((plan, index) => (
+                            <TableRow key={index}>
+                              <TableCell className="font-semibold">
+                                <div className="flex items-center gap-2">
+                                  {plan.plan}
+                                  {plan.tooltip && (
+                                    <Tooltip>
+                                      <TooltipTrigger>
+                                        <Info className="h-4 w-4 text-blue-500 cursor-help" />
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p>{plan.tooltip}</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  )}
+                                  {index === 2 && <Crown className="h-4 w-4 text-yellow-500" />}
+                                </div>
+                              </TableCell>
+                              <TableCell className="text-center font-medium">{plan.yearly}</TableCell>
+                              <TableCell className="text-center font-medium">{plan.lifetime}</TableCell>
+                              <TableCell className="text-center">
+                                <div className="flex items-center justify-center gap-1">
+                                  {index === 2 && <Star className="h-4 w-4 text-yellow-500" />}
+                                  <span className="text-sm">{plan.access}</span>
+                                </div>
+                              </TableCell>
+                              <TableCell className="text-center">
+                                <ul className="text-sm space-y-1">
+                                  {plan.features.map((feature, fIndex) => (
+                                    <li key={fIndex} className="flex items-center justify-start gap-1">
+                                      <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                                      <span>{feature}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TooltipProvider>
                   </CardContent>
                 </Card>
                 
