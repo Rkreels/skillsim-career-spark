@@ -19,6 +19,12 @@ import Simulation from "./pages/Simulation";
 import HRSimulation from "./pages/simulations/HRSimulation";
 import AccountingSimulation from "./pages/simulations/AccountingSimulation";
 import SalesSimulation from "./pages/simulations/SalesSimulation";
+import MarketingSimulation from "./pages/simulations/MarketingSimulation";
+import OperationsSimulation from "./pages/simulations/OperationsSimulation";
+import ManagementSimulation from "./pages/simulations/ManagementSimulation";
+import EducationSimulation from "./pages/simulations/EducationSimulation";
+import CustomerServiceSimulation from "./pages/simulations/CustomerServiceSimulation";
+import ProductSimulation from "./pages/simulations/ProductSimulation";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +43,12 @@ const App = () => (
               <Route path="/simulation/hr" element={<HRSimulation />} />
               <Route path="/simulation/accounting" element={<AccountingSimulation />} />
               <Route path="/simulation/sales" element={<SalesSimulation />} />
+              <Route path="/simulation/marketing" element={<MarketingSimulation />} />
+              <Route path="/simulation/operations" element={<OperationsSimulation />} />
+              <Route path="/simulation/management" element={<ManagementSimulation />} />
+              <Route path="/simulation/product" element={<ProductSimulation />} />
+              <Route path="/simulation/education" element={<EducationSimulation />} />
+              <Route path="/simulation/customer" element={<CustomerServiceSimulation />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/dashboard" element={<Dashboard />} />

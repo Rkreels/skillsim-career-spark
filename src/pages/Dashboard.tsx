@@ -47,9 +47,13 @@ const Dashboard = () => {
       sales: { en: "Sales Professional", bn: "সেলস পেশাদার" },
       marketing: { en: "Marketing Professional", bn: "মার্কেটিং পেশাদার" },
       operations: { en: "Operations Professional", bn: "অপারেশনস পেশাদার" },
-      management: { en: "Management Professional", bn: "ম্যানেজমেন্ট পেশাদার" }
+      management: { en: "Management Professional", bn: "ম্যানেজমেন্ট পেশাদার" },
+      finance: { en: "Finance Professional", bn: "ফিন্যান্স পেশাদার" },
+      product: { en: "Product Professional", bn: "প্রোডাক্ট পেশাদার" },
+      education: { en: "Education Professional", bn: "শিক্ষা পেশাদার" },
+      customer: { en: "Customer Service Professional", bn: "কাস্টমার সার্ভিস পেশাদার" }
     };
-    return t(roleNames[user.role].en, roleNames[user.role].bn);
+    return t(roleNames[user.role]?.en || "Professional", roleNames[user.role]?.bn || "পেশাদার");
   };
 
   const getDepartmentSimulationUrl = () => {
@@ -57,9 +61,13 @@ const Dashboard = () => {
       hr: '/simulation/hr',
       accounting: '/simulation/accounting', 
       sales: '/simulation/sales',
-      marketing: '/simulation',
-      operations: '/simulation',
-      management: '/simulation'
+      marketing: '/simulation/marketing',
+      operations: '/simulation/operations',
+      management: '/simulation/management',
+      finance: '/simulation/accounting',
+      product: '/simulation/product',
+      education: '/simulation/education',
+      customer: '/simulation/customer'
     };
     return simulationUrls[user.role] || '/simulation';
   };
