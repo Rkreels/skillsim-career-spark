@@ -1,10 +1,8 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { 
   Users, 
   DollarSign, 
@@ -20,7 +18,6 @@ import {
 const RoleSelection = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [selectedRole, setSelectedRole] = useState<string | null>(null);
 
   const departments = [
     {
@@ -152,22 +149,12 @@ const RoleSelection = () => {
     }
   ];
 
-  const handleRoleSelect = (departmentId: string, role: string) => {
-    setSelectedRole(`${departmentId}-${role}`);
-  };
-
-  const handleContinue = (action: 'login' | 'signup') => {
-    if (selectedRole) {
-      const [departmentId, roleName] = selectedRole.split('-');
-      const department = departments.find(d => d.id === departmentId);
-      
-      // Store selection in localStorage for later use
-      localStorage.setItem('selectedDepartment', departmentId);
-      localStorage.setItem('selectedRole', roleName);
-      localStorage.setItem('selectedDepartmentName', department?.titleEn || '');
-      
-      navigate(`/${action}?role=${encodeURIComponent(selectedRole)}`);
-    }
+  const handleDepartmentSelect = (departmentId: string, departmentName: string) => {
+    // Store selection in localStorage for later use
+    localStorage.setItem('selectedDepartment', departmentId);
+    localStorage.setItem('selectedDepartmentName', departmentName);
+    
+    navigate('/login');
   };
 
   return (
@@ -175,21 +162,25 @@ const RoleSelection = () => {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            {t("Choose Your Role", "আপনার ভূমিকা বেছে নিন")}
+            {t("Choose Your Department", "আপনার বিভাগ বেছে নিন")}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {t(
-              "Select your job role to get personalized learning content and tools tailored to your career path.",
-              "আপনার ক্যারিয়ার পথের জন্য ব্যক্তিগতকৃত শেখার বিষয়বস্তু এবং টুলস পেতে আপনার কাজের ভূমিকা নির্বাচন করুন।"
+              "Select your department to access personalized learning content and tools tailored to your career path.",
+              "আপনার ক্যারিয়ার পথের জন্য ব্যক্তিগতকৃত শেখার বিষয়বস্তু এবং টুলস অ্যাক্সেস করতে আপনার বিভাগ নির্বাচন করুন।"
             )}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {departments.map((department) => {
             const Icon = department.icon;
             return (
-              <Card key={department.id} className={`transition-all duration-200 ${department.bgColor} border-2 hover:border-gray-300`}>
+              <Card 
+                key={department.id} 
+                className={`transition-all duration-200 ${department.bgColor} border-2 hover:border-gray-300 cursor-pointer`}
+                onClick={() => handleDepartmentSelect(department.id, department.titleEn)}
+              >
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-3">
                     <Icon className={`h-6 w-6 ${department.color}`} />
@@ -201,12 +192,7 @@ const RoleSelection = () => {
                     {department.roles.map((role, index) => (
                       <div
                         key={index}
-                        className={`p-2 rounded-md cursor-pointer transition-colors ${
-                          selectedRole === `${department.id}-${role}`
-                            ? 'bg-white shadow-sm border-2 border-blue-400'
-                            : 'hover:bg-white/50'
-                        }`}
-                        onClick={() => handleRoleSelect(department.id, role)}
+                        className="p-2 rounded-md"
                       >
                         <div className="flex items-center gap-2">
                           <span className={department.color}>🔹</span>
@@ -220,35 +206,6 @@ const RoleSelection = () => {
             );
           })}
         </div>
-
-        {selectedRole && (
-          <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t shadow-lg p-4">
-            <div className="container mx-auto max-w-4xl">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-2">
-                  <Badge variant="secondary" className="text-sm">
-                    {t("Selected:", "নির্বাচিত:")} {selectedRole.split('-')[1]}
-                  </Badge>
-                </div>
-                <div className="flex gap-3">
-                  <Button
-                    variant="outline"
-                    onClick={() => handleContinue('login')}
-                    className="min-w-[100px]"
-                  >
-                    {t("Login", "লগইন")}
-                  </Button>
-                  <Button
-                    onClick={() => handleContinue('signup')}
-                    className="min-w-[100px] bg-blue-600 hover:bg-blue-700"
-                  >
-                    {t("Sign Up", "সাইন আপ")}
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

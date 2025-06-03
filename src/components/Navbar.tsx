@@ -3,7 +3,6 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Button } from '@/components/ui/button';
 
 export const Navbar: React.FC = () => {
   const { t } = useLanguage();
@@ -57,16 +56,6 @@ export const Navbar: React.FC = () => {
         
         <div className="flex items-center space-x-4">
           <LanguageToggle />
-          <Link to="/login">
-            <Button variant="outline">
-              {t("Login", "লগইন")}
-            </Button>
-          </Link>
-          <Link to="/signup" className="hidden md:block">
-            <Button>
-              {t("Sign Up", "সাইন আপ")}
-            </Button>
-          </Link>
         </div>
       </div>
     </nav>

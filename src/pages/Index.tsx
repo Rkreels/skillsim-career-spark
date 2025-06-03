@@ -236,9 +236,9 @@ const Index = () => {
                     {t("Start Your Career Journey", "আপনার ক্যারিয়ার যাত্রা শুরু করুন")}
                   </Button>
                 </Link>
-                <Link to="/early-access">
+                <Link to="/simulation">
                   <Button size="lg" variant="outline" className="skill-button-secondary">
-                    {t("Get Early Access", "আর্লি অ্যাক্সেস পান")}
+                    {t("Try a Simple Simulation", "একটি সহজ সিমুলেশন চেষ্টা করুন")}
                   </Button>
                 </Link>
               </div>
