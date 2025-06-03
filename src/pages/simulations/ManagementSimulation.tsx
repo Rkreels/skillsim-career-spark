@@ -6,7 +6,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart3, FileText, Settings, Keyboard, FolderOpen } from 'lucide-react';
+import { BarChart3, FileText, Settings, Keyboard, FolderOpen, Columns } from 'lucide-react';
 
 const ManagementSimulation = () => {
   const { t } = useLanguage();
@@ -20,6 +20,15 @@ const ManagementSimulation = () => {
       color: 'text-blue-600',
       description: 'Process modeling and business transformation',
       descriptionBn: 'প্রসেস মডেলিং এবং ব্যবসায়িক রূপান্তর'
+    },
+    {
+      id: 'trello-clone',
+      title: 'Trello Clone',
+      titleBn: 'ট্রেলো ক্লোন',
+      icon: Columns,
+      color: 'text-indigo-600',
+      description: 'Project management and team collaboration',
+      descriptionBn: 'প্রোজেক্ট ম্যানেজমেন্ট এবং টিম সহযোগিতা'
     },
     {
       id: 'roadmap-app',

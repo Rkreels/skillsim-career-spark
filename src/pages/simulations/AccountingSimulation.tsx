@@ -6,7 +6,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { DollarSign, FileText, Calculator, Keyboard, Settings } from 'lucide-react';
+import { DollarSign, FileText, Calculator, Keyboard, Settings, Receipt } from 'lucide-react';
 
 const AccountingSimulation = () => {
   const { t } = useLanguage();
@@ -20,6 +20,15 @@ const AccountingSimulation = () => {
       color: 'text-green-600',
       description: 'Complete accounting and bookkeeping system',
       descriptionBn: 'সম্পূর্ণ অ্যাকাউন্টিং এবং বুককিপিং সিস্টেম'
+    },
+    {
+      id: 'tax-filing-saas',
+      title: 'Tax Filing SaaS',
+      titleBn: 'ট্যাক্স ফাইলিং সাস',
+      icon: Receipt,
+      color: 'text-red-600',
+      description: 'Tax preparation and filing system for users and professionals',
+      descriptionBn: 'ব্যবহারকারী এবং পেশাদারদের জন্য ট্যাক্স প্রস্তুতি এবং ফাইলিং সিস্টেম'
     },
     {
       id: 'sap-erp',
