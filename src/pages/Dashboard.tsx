@@ -52,6 +52,18 @@ const Dashboard = () => {
     return t(roleNames[user.role].en, roleNames[user.role].bn);
   };
 
+  const getDepartmentSimulationUrl = () => {
+    const simulationUrls = {
+      hr: '/simulation/hr',
+      accounting: '/simulation/accounting', 
+      sales: '/simulation/sales',
+      marketing: '/simulation',
+      operations: '/simulation',
+      management: '/simulation'
+    };
+    return simulationUrls[user.role] || '/simulation';
+  };
+
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
       {/* Sidebar */}
@@ -223,9 +235,11 @@ const Dashboard = () => {
                 </div>
                 
                 <div className="mt-6">
-                  <Button variant="outline" className="w-full">
-                    {t("Start a New Simulation", "নতুন সিমুলেশন শুরু করুন")}
-                  </Button>
+                  <Link to={getDepartmentSimulationUrl()}>
+                    <Button variant="outline" className="w-full">
+                      {t("Start a New Simulation", "নতুন সিমুলেশন শুরু করুন")}
+                    </Button>
+                  </Link>
                 </div>
               </div>
               
