@@ -1,0 +1,17 @@
+
+{
+  "rewrites": [
+    {
+      "source": "/pos/:path*",
+      "destination": "https://pos-eight-blush.vercel.app/:path*"
+    },
+    {
+      "source": "/appointment-booking/:path*",
+      "destination": "https://appointment-booking-bice.vercel.app/:path*"
+    },
+    {
+      "source": "/email-marketing/:path*",
+      "destination": "https://email-marketing-eta-six.vercel.app/:path*"
+    }
+  ]
+}
