@@ -1,17 +1,18 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 // Icons
 import { Briefcase, GraduationCap, Handshake, Users, ChartBar, ChartLine } from 'lucide-react';
 
 const CareerPaths = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const careers = [
     {
@@ -69,6 +70,104 @@ const CareerPaths = () => {
       skillsBn: ["ডেটা অ্যানালিসিস", "প্রোগ্রামিং ফান্ডামেন্টালস", "ড্যাশবোর্ড ক্রিয়েশন", "স্ট্যাটিসটিক্যাল মেথডস"],
     },
   ];
+
+  const departments = [
+    {
+      id: 'hr',
+      titleEn: 'Human Resources',
+      titleBn: 'মানব সম্পদ',
+      icon: <Users className="h-8 w-8 text-blue-600" />,
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-50 hover:bg-blue-100',
+      roles: [
+        'HR Generalist',
+        'Recruiter / Talent Acquisition Specialist',
+        'Learning & Development Coordinator',
+        'Payroll & Compliance Officer',
+        'HR Business Partner'
+      ]
+    },
+    {
+      id: 'finance',
+      titleEn: 'Accounting & Finance',
+      titleBn: 'অ্যাকাউন্টিং এবং ফিনান্স',
+      icon: <Briefcase className="h-8 w-8 text-green-600" />,
+      color: 'text-green-600',
+      bgColor: 'bg-green-50 hover:bg-green-100',
+      roles: [
+        'Accountant / Bookkeeper',
+        'Financial Analyst',
+        'Accounts Payable / Receivable Clerk',
+        'Budget & Forecasting Specialist',
+        'Payroll Specialist'
+      ]
+    },
+    {
+      id: 'sales',
+      titleEn: 'Sales',
+      titleBn: 'বিক্রয়',
+      icon: <ChartBar className="h-8 w-8 text-purple-600" />,
+      color: 'text-purple-600',
+      bgColor: 'bg-purple-50 hover:bg-purple-100',
+      roles: [
+        'Sales Development Representative (SDR)',
+        'Account Executive',
+        'Sales Operations Analyst',
+        'Key Account Manager',
+        'Territory Sales Manager'
+      ]
+    },
+    {
+      id: 'marketing',
+      titleEn: 'Marketing',
+      titleBn: 'মার্কেটিং',
+      icon: <ChartLine className="h-8 w-8 text-pink-600" />,
+      color: 'text-pink-600',
+      bgColor: 'bg-pink-50 hover:bg-pink-100',
+      roles: [
+        'Marketing Specialist',
+        'Content Strategist',
+        'Social Media Manager',
+        'Campaign Manager'
+      ]
+    },
+    {
+      id: 'operations',
+      titleEn: 'Operations',
+      titleBn: 'অপারেশনস',
+      icon: <Handshake className="h-8 w-8 text-orange-600" />,
+      color: 'text-orange-600',
+      bgColor: 'bg-orange-50 hover:bg-orange-100',
+      roles: [
+        'Operations Coordinator',
+        'Supply Chain Analyst',
+        'Procurement / Purchasing Officer',
+        'Inventory Manager',
+        'Logistics Specialist'
+      ]
+    },
+    {
+      id: 'management',
+      titleEn: 'Management',
+      titleBn: 'ম্যানেজমেন্ট',
+      icon: <GraduationCap className="h-8 w-8 text-indigo-600" />,
+      color: 'text-indigo-600',
+      bgColor: 'bg-indigo-50 hover:bg-indigo-100',
+      roles: [
+        'Project Manager',
+        'Strategy Lead',
+        'Department Head',
+        'General Manager',
+        'Business Operations Lead'
+      ]
+    }
+  ];
+
+  const handleDepartmentSelect = (departmentId: string, departmentName: string) => {
+    localStorage.setItem('selectedDepartment', departmentId);
+    localStorage.setItem('selectedDepartmentName', departmentName);
+    navigate('/login');
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -134,6 +233,52 @@ const CareerPaths = () => {
           </div>
         </section>
         
+        {/* Department Selection Section */}
+        <section className="py-16 bg-gray-50 dark:bg-gray-900">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                {t("Choose Your Department", "আপনার বিভাগ বেছে নিন")}
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                {t(
+                  "Select your department to access personalized learning content and tools tailored to your career path.",
+                  "আপনার ক্যারিয়ার পথের জন্য ব্যক্তিগতকৃত শেখার বিষয়বস্তু এবং টুলস অ্যাক্সেস করতে আপনার বিভাগ নির্বাচন করুন।"
+                )}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {departments.map((department) => (
+                <Card 
+                  key={department.id} 
+                  className={`transition-all duration-200 ${department.bgColor} border-2 hover:border-gray-300 cursor-pointer`}
+                  onClick={() => handleDepartmentSelect(department.id, department.titleEn)}
+                >
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-3">
+                      {department.icon}
+                      <span className="text-lg">{t(department.titleEn, department.titleBn)}</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      {department.roles.map((role, index) => (
+                        <div key={index} className="p-2 rounded-md">
+                          <div className="flex items-center gap-2">
+                            <span className={department.color}>🔹</span>
+                            <span className="text-sm font-medium">{role}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+        
         {/* CTA Section */}
         <section className="py-16 bg-gradient-to-r from-skill-blue to-skill-green text-white">
           <div className="container mx-auto px-4 md:px-6 text-center">
@@ -150,14 +295,14 @@ const CareerPaths = () => {
               )}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/signup">
+              <Link to="/login">
                 <Button size="lg" variant="secondary" className="bg-white text-skill-blue hover:bg-gray-100">
-                  {t("Get Started Free", "বিনামূল্যে শুরু করুন")}
+                  {t("Start Your Career Journey", "আপনার ক্যারিয়ার যাত্রা শুরু করুন")}
                 </Button>
               </Link>
-              <Link to="/contact">
+              <Link to="/login">
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                  {t("Contact Team", "টিমের সাথে যোগাযোগ করুন")}
+                  {t("Get Started", "শুরু করুন")}
                 </Button>
               </Link>
             </div>
