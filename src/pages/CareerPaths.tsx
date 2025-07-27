@@ -223,9 +223,11 @@ const CareerPaths = () => {
                       ))}
                     </ul>
                     
-                    <Button className="w-full">
-                      {t("Explore Path", "পাথ অন্বেষণ করুন")}
-                    </Button>
+                    <Link to="/login">
+                      <Button className="w-full">
+                        {t("Explore Path", "পাথ অন্বেষণ করুন")}
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               ))}
