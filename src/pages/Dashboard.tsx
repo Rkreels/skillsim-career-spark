@@ -285,8 +285,6 @@ const Dashboard = () => {
                             </div>
                             <a
                               href={tool.visitUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
                               className="text-xs bg-skill-blue text-white px-2 py-1 rounded hover:bg-skill-blue/80"
                             >
                               {t("Visit", "ভিজিট")}
