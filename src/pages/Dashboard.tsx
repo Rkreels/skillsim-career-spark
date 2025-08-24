@@ -37,12 +37,14 @@ const Dashboard = () => {
   const allTools = {
     hr: [
       { id: 'hrms', title: 'HRMS System', icon: Users, color: 'text-blue-600', visitUrl: '/hrms' },
+      { id: 'application-tracking', title: 'ATS - Applicant Tracking', icon: FileText, color: 'text-purple-600', visitUrl: '/application-tracking' },
       { id: 'odoo', title: 'Odoo ERP', icon: Settings, color: 'text-green-600', visitUrl: '/odoo' },
-      { id: 'typing-practice', title: 'Typing Skills', icon: Keyboard, color: 'text-gray-600', visitUrl: '/typing' },
+      { id: 'typing', title: 'Typing Skills', icon: Keyboard, color: 'text-gray-600', visitUrl: '/typing' },
       { id: 'excel', title: 'Excel for HR', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ],
     accounting: [
       { id: 'accounting', title: 'Accounting System', icon: Calculator, color: 'text-blue-600', visitUrl: '/accounting' },
+      { id: 'tax-submit', title: 'Tax Submission', icon: DollarSign, color: 'text-green-600', visitUrl: '/tax-submit' },
       { id: 'excel', title: 'Financial Analysis', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' },
       { id: 'powerbi', title: 'Financial Reporting', icon: BarChart3, color: 'text-purple-600', visitUrl: '/powerbi' }
     ],
@@ -54,24 +56,25 @@ const Dashboard = () => {
     ],
     marketing: [
       { id: 'email-marketing', title: 'Email Marketing', icon: Megaphone, color: 'text-blue-600', visitUrl: '/email-marketing' },
-      { id: 'zap', title: 'Marketing Automation', icon: Target, color: 'text-green-600', visitUrl: '/zap' },
+      { id: 'zap', title: 'Marketing Automation (Zap)', icon: Target, color: 'text-green-600', visitUrl: '/zap' },
       { id: 'powerbi', title: 'Campaign Analytics', icon: BarChart3, color: 'text-purple-600', visitUrl: '/powerbi' },
       { id: 'excel', title: 'Marketing Data', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ],
     operations: [
       { id: 'bpm', title: 'Business Process Mgmt', icon: Settings, color: 'text-blue-600', visitUrl: '/bpm' },
-      { id: 'project-management', title: 'Project Management', icon: FolderOpen, color: 'text-green-600', visitUrl: '/project-management' },
+      { id: 'erp', title: 'Enterprise Resource Planning', icon: Package, color: 'text-green-600', visitUrl: '/erp' },
       { id: 'automation', title: 'Process Automation', icon: Package, color: 'text-purple-600', visitUrl: '/automation' },
-      { id: 'excel', title: 'Operations Data', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
+      { id: 'business-supply', title: 'Business Supply Chain', icon: Truck, color: 'text-indigo-600', visitUrl: '/business-supply' },
+      { id: 'document-management', title: 'Document Management', icon: FolderOpen, color: 'text-orange-600', visitUrl: '/document-management' }
     ],
     management: [
       { id: 'nexus', title: 'Portfolio Mgmt (Nexus)', icon: BarChart3, color: 'text-blue-600', visitUrl: '/nexus' },
       { id: 'roadmap', title: 'Strategic Roadmap', icon: Target, color: 'text-green-600', visitUrl: '/roadmap' },
-      { id: 'project-management', title: 'Project Oversight', icon: FolderOpen, color: 'text-purple-600', visitUrl: '/project-management' },
+      { id: 'project-management', title: 'Project Management', icon: FolderOpen, color: 'text-purple-600', visitUrl: '/project-management' },
       { id: 'powerbi', title: 'Executive Dashboard', icon: BarChart3, color: 'text-indigo-600', visitUrl: '/powerbi' }
     ],
     product: [
-      { id: 'roadmap-app', title: 'Product Roadmap', icon: Target, color: 'text-blue-600', visitUrl: '/roadmap' },
+      { id: 'roadmap', title: 'Product Roadmap', icon: Target, color: 'text-blue-600', visitUrl: '/roadmap' },
       { id: 'project-management', title: 'Product Development', icon: FolderOpen, color: 'text-green-600', visitUrl: '/project-management' },
       { id: 'powerbi', title: 'Product Analytics', icon: BarChart3, color: 'text-purple-600', visitUrl: '/powerbi' },
       { id: 'excel', title: 'Product Metrics', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
@@ -79,13 +82,12 @@ const Dashboard = () => {
     education: [
       { id: 'study-pathways', title: 'Student CRM', icon: Users, color: 'text-blue-600', visitUrl: '/study-pathways' },
       { id: 'appointment-booking', title: 'Appointment System', icon: GraduationCap, color: 'text-green-600', visitUrl: '/appointment-booking' },
-      { id: 'application-tracking', title: 'Application Tracker', icon: FileText, color: 'text-purple-600', visitUrl: '/application-tracking' },
       { id: 'excel', title: 'Student Records', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ],
     customer: [
       { id: 'ghl-crm', title: 'Customer CRM', icon: Headphones, color: 'text-blue-600', visitUrl: '/ghl-crm' },
       { id: 'automation', title: 'Support Automation', icon: MessageSquare, color: 'text-purple-600', visitUrl: '/automation' },
-      { id: 'typing-practice', title: 'Response Efficiency', icon: Keyboard, color: 'text-gray-600', visitUrl: '/typing' },
+      { id: 'typing', title: 'Response Efficiency', icon: Keyboard, color: 'text-gray-600', visitUrl: '/typing' },
       { id: 'excel', title: 'Service Analytics', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ]
   };
