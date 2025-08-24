@@ -34,6 +34,7 @@ const Dashboard = () => {
     return <Onboarding />;
   }
 
+  // Updated tools with all URLs from provided list
   const allTools = {
     hr: [
       { id: 'hrms', title: 'HRMS System', icon: Users, color: 'text-blue-600', visitUrl: '/hrms' },
