@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 import CareerPaths from "./pages/CareerPaths";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -30,6 +31,7 @@ const App = () => (
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/career-paths" element={<CareerPaths />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />

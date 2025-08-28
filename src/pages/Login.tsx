@@ -31,7 +31,14 @@ const Login = () => {
       isOnboarded: true,
       completedCourses: ['course-1', 'course-2'],
       currentCourses: ['course-3', 'course-4'],
-      skillLevel: 'intermediate' as const
+      skillLevel: 'intermediate' as const,
+      joinedDate: Date.now(),
+      lastLogin: Date.now(),
+      preferences: {
+        notifications: true,
+        theme: 'auto' as const,
+        language: 'en' as const
+      }
     };
     
     setUser(demoUser);

@@ -13,6 +13,13 @@ export interface UserProfile {
   completedCourses: string[];
   currentCourses: string[];
   skillLevel: 'beginner' | 'intermediate' | 'advanced';
+  joinedDate: number;
+  lastLogin: number;
+  preferences: {
+    notifications: boolean;
+    theme: 'light' | 'dark' | 'auto';
+    language: 'en' | 'bn';
+  };
 }
 
 interface UserContextType {
@@ -20,6 +27,8 @@ interface UserContextType {
   setUser: (user: UserProfile) => void;
   updateUserRole: (role: UserRole, department: string) => void;
   completeOnboarding: () => void;
+  updateLastLogin: () => void;
+  updatePreferences: (preferences: Partial<UserProfile['preferences']>) => void;
   isLoading: boolean;
 }
 
@@ -61,8 +70,33 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  const updateLastLogin = () => {
+    if (user) {
+      const updatedUser = { ...user, lastLogin: Date.now() };
+      setUser(updatedUser);
+    }
+  };
+
+  const updatePreferences = (preferences: Partial<UserProfile['preferences']>) => {
+    if (user) {
+      const updatedUser = { 
+        ...user, 
+        preferences: { ...user.preferences, ...preferences }
+      };
+      setUser(updatedUser);
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser, updateUserRole, completeOnboarding, isLoading }}>
+    <UserContext.Provider value={{ 
+      user, 
+      setUser, 
+      updateUserRole, 
+      completeOnboarding, 
+      updateLastLogin, 
+      updatePreferences, 
+      isLoading 
+    }}>
       {children}
     </UserContext.Provider>
   );

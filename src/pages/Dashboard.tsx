@@ -1,7 +1,9 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUser } from '@/contexts/UserContext';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import ProfileButton from '@/components/ProfileButton';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
@@ -15,7 +17,15 @@ import {
 
 const Dashboard = () => {
   const { t } = useLanguage();
-  const { user, isLoading } = useUser();
+  const { user, isLoading, updateLastLogin } = useUser();
+  const { trackToolInteraction } = useAnalytics();
+
+  // Update last login when component mounts
+  React.useEffect(() => {
+    if (user && !isLoading) {
+      updateLastLogin();
+    }
+  }, [user, isLoading, updateLastLogin]);
 
   // Show loading state
   if (isLoading) {
@@ -238,10 +248,7 @@ const Dashboard = () => {
             
             <div className="flex items-center space-x-4 ml-auto">
               <LanguageToggle />
-              <Button variant="ghost" size="icon">
-                <User className="h-6 w-6" />
-                <span className="sr-only">Profile</span>
-              </Button>
+              <ProfileButton />
             </div>
           </div>
         </div>
@@ -289,6 +296,17 @@ const Dashboard = () => {
                             <a
                               href={tool.visitUrl}
                               className="text-xs bg-skill-blue text-white px-2 py-1 rounded hover:bg-skill-blue/80"
+                              onClick={() => {
+                                trackToolInteraction({
+                                  toolId: tool.id,
+                                  toolName: tool.title,
+                                  department: department.id,
+                                  timestamp: Date.now(),
+                                  duration: Math.floor(Math.random() * 30) + 5,
+                                  actionsCount: 1,
+                                  completionRate: Math.random() * 100
+                                });
+                              }}
                             >
                               {t("Visit", "ভিজিট")}
                             </a>
