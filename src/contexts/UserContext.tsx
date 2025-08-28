@@ -29,6 +29,7 @@ interface UserContextType {
   completeOnboarding: () => void;
   updateLastLogin: () => void;
   updatePreferences: (preferences: Partial<UserProfile['preferences']>) => void;
+  logout: () => void;
   isLoading: boolean;
 }
 
@@ -87,6 +88,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  const logout = () => {
+    localStorage.removeItem('skillsim-user');
+    localStorage.removeItem('skillsim-analytics');
+    setUserState(null);
+  };
+
   return (
     <UserContext.Provider value={{ 
       user, 
@@ -95,6 +102,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       completeOnboarding, 
       updateLastLogin, 
       updatePreferences, 
+      logout,
       isLoading 
     }}>
       {children}

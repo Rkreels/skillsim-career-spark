@@ -1,12 +1,18 @@
 
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useUser } from '@/contexts/UserContext';
+import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { User, LogOut, BarChart3 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { t } = useLanguage();
+  const { user, logout } = useUser();
   const location = useLocation();
+  const navigate = useNavigate();
   
   // Function to scroll to section when on homepage
   const scrollToSection = (id: string) => {
@@ -56,6 +62,32 @@ export const Navbar: React.FC = () => {
         
         <div className="flex items-center space-x-4">
           <LanguageToggle />
+          {user && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="relative">
+                  <User className="h-5 w-5" />
+                  <span className="sr-only">{t('User menu', 'ব্যবহারকারী মেনু')}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <div className="px-2 py-1.5">
+                  <p className="text-sm font-medium">{user.name}</p>
+                  <p className="text-xs text-muted-foreground">{user.email}</p>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => navigate('/profile')}>
+                  <BarChart3 className="mr-2 h-4 w-4" />
+                  {t('Profile & Analytics', 'প্রোফাইল এবং বিশ্লেষণ')}
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => { logout(); navigate('/'); }}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  {t('Logout', 'লগআউট')}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </div>
     </nav>

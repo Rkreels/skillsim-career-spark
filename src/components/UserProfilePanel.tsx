@@ -6,23 +6,25 @@ import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useUser } from '@/contexts/UserContext';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useIntelligentSuggestions } from '@/hooks/useIntelligentSuggestions';
 import { useLanguage } from '@/contexts/LanguageContext';
 import AnalyticsReports from './AnalyticsReports';
 import {
   User, TrendingUp, Award, Target, Clock, BarChart3, 
-  Trophy, Flame, Calendar, Activity
+  Trophy, Flame, Calendar, Activity, Lightbulb, X, Users
 } from 'lucide-react';
 
 const UserProfilePanel: React.FC = () => {
   const { user } = useUser();
   const { analytics, getToolMastery, getDepartmentRanking, getImprovementSuggestions } = useAnalytics();
+  const { suggestions, dismissSuggestion } = useIntelligentSuggestions(user?.role || 'hr');
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('overview');
 
   if (!user) return null;
 
   const departmentRanking = getDepartmentRanking();
-  const suggestions = getImprovementSuggestions();
+  const oldSuggestions = getImprovementSuggestions();
   const topTools = Object.values(analytics.toolsProgress)
     .sort((a, b) => b.skillLevel - a.skillLevel)
     .slice(0, 5);
@@ -63,7 +65,7 @@ const UserProfilePanel: React.FC = () => {
               <p className="text-gray-600 dark:text-gray-400">{user.email}</p>
               <div className="flex items-center gap-2 mt-2">
                 <Badge variant="outline" className="capitalize">{user.role}</Badge>
-                <Badge variant="secondary">{user.department}</Badge>
+                <Badge variant="secondary">Multi-Department Learner</Badge>
                 <Badge className={getSkillBadgeColor(analytics.overallSkillLevel)}>
                   Level {Math.floor(analytics.overallSkillLevel)}
                 </Badge>
@@ -117,12 +119,10 @@ const UserProfilePanel: React.FC = () => {
         
         <Card>
           <CardContent className="p-4 text-center">
-            <Flame className="w-8 h-8 text-red-500 mx-auto mb-2" />
-            <div className="text-2xl font-bold">
-              {Math.max(...Object.values(analytics.toolsProgress).map(t => t.streak || 0), 0)}
-            </div>
+            <Users className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+            <div className="text-2xl font-bold">{Math.round(analytics.crossDepartmentScore)}%</div>
             <div className="text-sm text-gray-600 dark:text-gray-400">
-              {t('Best Streak', 'সেরা ধারা')}
+              {t('Cross-Dept Score', 'ক্রস-বিভাগীয় স্কোর')}
             </div>
           </CardContent>
         </Card>
@@ -130,10 +130,11 @@ const UserProfilePanel: React.FC = () => {
 
       {/* Detailed Analytics Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview">{t('Overview', 'সংক্ষিপ্ত')}</TabsTrigger>
           <TabsTrigger value="departments">{t('Departments', 'বিভাগসমূহ')}</TabsTrigger>
           <TabsTrigger value="tools">{t('Tools', 'টুলস')}</TabsTrigger>
+          <TabsTrigger value="suggestions">{t('AI Suggestions', 'এআই পরামর্শ')}</TabsTrigger>
           <TabsTrigger value="insights">{t('Insights', 'অন্তর্দৃষ্টি')}</TabsTrigger>
         </TabsList>
 
@@ -163,13 +164,13 @@ const UserProfilePanel: React.FC = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Target className="w-5 h-5" />
-                  {t('Improvement Suggestions', 'উন্নতির পরামর্শ')}
+                  {t('Legacy Suggestions', 'পুরনো পরামর্শ')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  {suggestions.length > 0 ? (
-                    suggestions.map((suggestion, index) => (
+                  {oldSuggestions.length > 0 ? (
+                    oldSuggestions.map((suggestion, index) => (
                       <div key={index} className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm">
                         {suggestion}
                       </div>
@@ -248,6 +249,57 @@ const UserProfilePanel: React.FC = () => {
               </Card>
             ))}
           </div>
+        </TabsContent>
+
+        <TabsContent value="suggestions" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Lightbulb className="w-5 h-5" />
+                {t('AI-Powered Suggestions', 'এআই-চালিত পরামর্শ')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {suggestions.map((suggestion) => (
+                  <div key={suggestion.id} className={`p-4 rounded-lg border-l-4 ${
+                    suggestion.priority === 'high' ? 'border-l-red-500 bg-red-50 dark:bg-red-900/20' :
+                    suggestion.priority === 'medium' ? 'border-l-yellow-500 bg-yellow-50 dark:bg-yellow-900/20' :
+                    'border-l-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                  }`}>
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <h4 className="font-medium">{suggestion.title}</h4>
+                          <Badge variant={suggestion.priority === 'high' ? 'destructive' : 'secondary'} className="text-xs">
+                            {suggestion.priority}
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{suggestion.description}</p>
+                        <p className="text-xs text-gray-500 mt-1 capitalize">
+                          Department: {suggestion.department}
+                        </p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => dismissSuggestion(suggestion.id)}
+                        className="ml-2"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+                {suggestions.length === 0 && (
+                  <div className="text-center py-8 text-gray-500">
+                    <Lightbulb className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <p>{t('Great job! Keep practicing to unlock new suggestions.', 'দুর্দান্ত! নতুন পরামর্শ আনলক করতে অনুশীলন চালিয়ে যান।')}</p>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         <TabsContent value="insights" className="space-y-4">

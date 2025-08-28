@@ -32,15 +32,25 @@ export interface UserAnalytics {
     skillLevel: number;
     improvementScore: number;
     lastAccessed: number;
+    masteryLevel: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+    weeklyGrowth: number;
   }>;
   toolsProgress: Record<string, ToolProgress>;
   overallSkillLevel: number;
   improvementTrend: number; // -100 to 100 (percentage change)
+  crossDepartmentScore: number; // How well-rounded the user is
   weeklyProgress: Array<{
     date: string;
     interactions: number;
     duration: number;
     skillGain: number;
+  }>;
+  achievements: Array<{
+    id: string;
+    title: string;
+    description: string;
+    unlockedAt: number;
+    category: string;
   }>;
 }
 
@@ -60,7 +70,9 @@ export const useAnalytics = () => {
       toolsProgress: {},
       overallSkillLevel: 0,
       improvementTrend: 0,
-      weeklyProgress: []
+      crossDepartmentScore: 0,
+      weeklyProgress: [],
+      achievements: []
     };
   });
 
@@ -84,7 +96,9 @@ export const useAnalytics = () => {
           interactions: 0,
           skillLevel: 0,
           improvementScore: 0,
-          lastAccessed: 0
+          lastAccessed: 0,
+          masteryLevel: 'Beginner',
+          weeklyGrowth: 0
         };
       }
       
@@ -95,7 +109,15 @@ export const useAnalytics = () => {
       // Calculate skill improvement based on frequency and recency
       const recencyBonus = Math.max(0, 100 - (Date.now() - interaction.timestamp) / (1000 * 60 * 60 * 24)); // Days since last use
       const frequencyScore = Math.min(100, deptProgress.interactions * 2);
+      const previousSkillLevel = deptProgress.skillLevel;
       deptProgress.skillLevel = Math.min(100, (frequencyScore + recencyBonus) / 2);
+      deptProgress.weeklyGrowth = deptProgress.skillLevel - previousSkillLevel;
+      
+      // Update mastery level
+      if (deptProgress.skillLevel >= 80) deptProgress.masteryLevel = 'Expert';
+      else if (deptProgress.skillLevel >= 60) deptProgress.masteryLevel = 'Advanced';
+      else if (deptProgress.skillLevel >= 30) deptProgress.masteryLevel = 'Intermediate';
+      else deptProgress.masteryLevel = 'Beginner';
       
       // Update tool progress
       if (!newAnalytics.toolsProgress[interaction.toolId]) {
@@ -135,6 +157,7 @@ export const useAnalytics = () => {
       // Update overall analytics
       updateOverallMetrics(newAnalytics);
       updateWeeklyProgress(newAnalytics, interaction);
+      checkAchievements(newAnalytics, interaction);
 
       return newAnalytics;
     });
@@ -223,6 +246,11 @@ function updateOverallMetrics(analytics: UserAnalytics): void {
   
   analytics.overallSkillLevel = avgSkillLevel;
   
+  // Calculate cross-department score (how many departments user has explored)
+  const activeDepartments = departments.filter(dept => dept.interactions > 0).length;
+  const totalDepartments = 6; // hr, accounting, sales, marketing, operations, management
+  analytics.crossDepartmentScore = (activeDepartments / totalDepartments) * 100;
+  
   // Calculate improvement trend (simplified)
   const recentInteractions = analytics.totalInteractions;
   analytics.improvementTrend = Math.min(100, Math.max(-100, (recentInteractions - 10) * 5));
@@ -247,4 +275,55 @@ function updateWeeklyProgress(analytics: UserAnalytics, interaction: UserInterac
     // Keep only last 30 days
     analytics.weeklyProgress = analytics.weeklyProgress.slice(-30);
   }
+}
+
+function checkAchievements(analytics: UserAnalytics, interaction: UserInteraction): void {
+  const achievements = analytics.achievements;
+  
+  // First interaction achievement
+  if (analytics.totalInteractions === 1 && !achievements.some(a => a.id === 'first_interaction')) {
+    achievements.push({
+      id: 'first_interaction',
+      title: 'Welcome Aboard!',
+      description: 'Completed your first tool interaction',
+      unlockedAt: Date.now(),
+      category: 'milestone'
+    });
+  }
+  
+  // Cross-department explorer
+  const activeDepartments = Object.keys(analytics.departmentProgress).length;
+  if (activeDepartments >= 3 && !achievements.some(a => a.id === 'cross_department_explorer')) {
+    achievements.push({
+      id: 'cross_department_explorer',
+      title: 'Cross-Department Explorer',
+      description: 'Explored tools across 3 different departments',
+      unlockedAt: Date.now(),
+      category: 'exploration'
+    });
+  }
+  
+  // Power user
+  if (analytics.totalInteractions >= 50 && !achievements.some(a => a.id === 'power_user')) {
+    achievements.push({
+      id: 'power_user',
+      title: 'Power User',
+      description: 'Completed 50 tool interactions',
+      unlockedAt: Date.now(),
+      category: 'milestone'
+    });
+  }
+  
+  // Department mastery
+  Object.entries(analytics.departmentProgress).forEach(([dept, progress]) => {
+    if (progress.skillLevel >= 80 && !achievements.some(a => a.id === `master_${dept}`)) {
+      achievements.push({
+        id: `master_${dept}`,
+        title: `${dept.charAt(0).toUpperCase() + dept.slice(1)} Master`,
+        description: `Achieved mastery in ${dept} department`,
+        unlockedAt: Date.now(),
+        category: 'mastery'
+      });
+    }
+  });
 }

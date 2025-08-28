@@ -21,18 +21,18 @@ const Login = () => {
     const selectedDepartment = localStorage.getItem('selectedDepartment') || 'hr';
     const selectedDepartmentName = localStorage.getItem('selectedDepartmentName') || 'Human Resources';
     
-    // Create demo user
+    // Create demo user with cross-department capabilities
     const demoUser = {
       id: 'demo-user-1',
-      name: 'Demo User',
+      name: 'Demo User - Multi-Department Learner',
       email: 'demo@skillsim.com',
       role: selectedDepartment as any,
-      department: selectedDepartmentName,
+      department: selectedDepartmentName + ' (Primary)',
       isOnboarded: true,
-      completedCourses: ['course-1', 'course-2'],
-      currentCourses: ['course-3', 'course-4'],
-      skillLevel: 'intermediate' as const,
-      joinedDate: Date.now(),
+      completedCourses: ['hr-analytics', 'workday-basics', 'excel-advanced', 'salesforce-crm'],
+      currentCourses: ['bamboo-hr', 'quickbooks', 'power-bi'],
+      skillLevel: 'advanced' as const,
+      joinedDate: Date.now() - (90 * 24 * 60 * 60 * 1000), // 90 days ago
       lastLogin: Date.now(),
       preferences: {
         notifications: true,
