@@ -21,10 +21,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import AnimatedBackground from '@/components/AnimatedBackground';
-
 // Icons
-import { Briefcase, GraduationCap, Handshake, Users, ChartBar, ChartLine, Check, Info, Crown, Star } from 'lucide-react';
+import { Briefcase, GraduationCap, Handshake, Users, ChartBar, ChartLine, Check, Info, Crown, Star, PlayCircle, Award, Target, Zap, Shield, Globe, TrendingUp, Clock, BookOpen, MessageSquare } from 'lucide-react';
 
 const Index = () => {
   const { t, language } = useLanguage();
@@ -206,122 +204,387 @@ const Index = () => {
       <EarlyAccessBanner />
       <Navbar />
       
-      <div className="relative flex-grow overflow-visible">
-        <AnimatedBackground />
-        
-        <main className="relative z-10">
-          <section className="py-16 md:py-24 relative z-10">
-            <div className="container mx-auto px-4 md:px-6 text-center relative">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-skill-blue to-skill-green bg-clip-text text-transparent">
-                {t(
-                  "Accelerate Your Career with Industry-Standard Skills",
-                  "ইন্ডাস্ট্রি-স্ট্যান্ডার্ড দক্ষতার মাধ্যমে আপনার ক্যারিয়ার ত্বরান্বিত করুন"
-                )}
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl mx-auto">
-                {t(
-                  "From classroom to corner office—build the real-world expertise top employers demand.",
-                  "ক্লাসরুম থেকে কর্নার অফিস—শীর্ষ নিয়োগকর্তারা যে বাস্তব দক্ষতা চান তা গড়ে তুলুন।"
-                )}
-              </p>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-10">
-                {t(
-                  "Tailored learning paths for every role: finance, HR, product, operations, sales & more.",
-                  "প্রতিটি ভূমিকার জন্য নির্ধারিত শেখার পথ: ফাইন্যান্স, এইচআর, প্রোডাক্ট, অপারেশনস, সেলস এবং আরও অনেক কিছু।"
-                )}
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-                <Link to="/login">
-                  <Button size="lg" className="skill-button-primary">
-                    {t("Start Your Career Journey", "আপনার ক্যারিয়ার যাত্রা শুরু করুন")}
-                  </Button>
-                </Link>
-                <Link to="/login">
-                  <Button size="lg" variant="outline" className="skill-button-secondary">
-                    {t("Get Started", "শুরু করুন")}
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </section>
-          
-          <section className="py-16 bg-gradient-to-br from-skill-blue to-skill-green text-white relative z-10">
+      <div className="relative flex-grow">        
+        <main className="relative">
+          {/* Hero Section */}
+          <section className="relative py-20 md:py-32 bg-gradient-to-br from-background via-background/95 to-primary/5">
             <div className="container mx-auto px-4 md:px-6">
-              <div className="flex flex-col lg:flex-row gap-12">
-                <div className="lg:w-1/2">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    {t(
-                      "Join the Revolution in Professional Growth",
-                      "পেশাদার বৃদ্ধির বিপ্লবে যোগ দিন"
-                    )}
-                  </h2>
-                  <p className="text-lg mb-6">
-                    {t(
-                      "SkillSim is changing how professionals learn industry-standard tools and processes with our unique blend of tutorials, interactive simulations, and real-world experience.",
-                      "SkillSim টিউটোরিয়াল, ইন্টারঅ্যাক্টিভ সিমুলেশন, এবং বাস্তব অভিজ্ঞতার অনন্য মিশ্রণের মাধ্যমে পেশাদাররা কিভাবে ইন্ডাস্ট্রি-স্ট্যান্ডার্ড টুল এবং প্রক্রিয়া শিখে তা পরিবর্তন করছে।"
-                    )}
-                  </p>
-                </div>
-                
-                <div className="lg:w-1/2">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                      <div className="text-3xl font-bold">20%</div>
-                      <div className="text-sm">{t("Expert Tutorials", "বিশেষজ্ঞ টিউটোরিয়াল")}</div>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                      <div className="text-3xl font-bold">40%</div>
-                      <div className="text-sm">{t("Interactive Practice", "ইন্টারঅ্যাক্টিভ অনুশীলন")}</div>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                      <div className="text-3xl font-bold">40%</div>
-                      <div className="text-sm">{t("Real-World Tasks", "বাস্তব কাজ")}</div>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                      <div className="text-3xl font-bold">100%</div>
-                      <div className="text-sm">{t("Career Growth", "ক্যারিয়ার বৃদ্ধি")}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          
-          <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="why-skillsim">
-            <div className="container mx-auto px-4 md:px-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-                {t("Why SkillSim Is Different", "কেন SkillSim আলাদা")}
-              </h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex">
-                    <div className="mr-4 mt-1">
-                      <Check className="h-6 w-6 text-skill-green" />
-                    </div>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      {t(benefit.titleEn, benefit.titleBn)}
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="space-y-8">
+                  <div className="space-y-4">
+                    <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
+                      {t("Master", "মাস্টার করুন")} 
+                      <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> 
+                        {t(" Industry Skills", " ইন্ডাস্ট্রি দক্ষতা")}
+                      </span>
+                      <br />
+                      {t("Accelerate Your Career", "আপনার ক্যারিয়ার ত্বরান্বিত করুন")}
+                    </h1>
+                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
+                      {t(
+                        "Professional simulations and real-world scenarios to build expertise that employers demand. From finance to operations, master the tools that drive success.",
+                        "পেশাদার সিমুলেশন এবং বাস্তব পরিস্থিতির মাধ্যমে নিয়োগকর্তাদের চাহিদার দক্ষতা গড়ুন। ফাইন্যান্স থেকে অপারেশনস পর্যন্ত, সফলতার জন্য প্রয়োজনীয় টুলস মাস্টার করুন।"
+                      )}
                     </p>
                   </div>
-                ))}
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link to="/login">
+                      <Button size="lg" className="w-full sm:w-auto">
+                        <PlayCircle className="mr-2 h-5 w-5" />
+                        {t("Start Learning Now", "এখনই শিখতে শুরু করুন")}
+                      </Button>
+                    </Link>
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => scrollToSection('demo')}>
+                      <BookOpen className="mr-2 h-5 w-5" />
+                      {t("Watch Demo", "ডেমো দেখুন")}
+                    </Button>
+                  </div>
+
+                  <div className="flex items-center space-x-6 text-sm text-muted-foreground">
+                    <div className="flex items-center">
+                      <Award className="h-4 w-4 mr-2 text-primary" />
+                      {t("Industry Certified", "ইন্ডাস্ট্রি সার্টিফাইড")}
+                    </div>
+                    <div className="flex items-center">
+                      <Users className="h-4 w-4 mr-2 text-primary" />
+                      {t("10K+ Professionals", "১০ হাজার+ পেশাদার")}
+                    </div>
+                    <div className="flex items-center">
+                      <Globe className="h-4 w-4 mr-2 text-primary" />
+                      {t("Global Recognition", "বিশ্বব্যাপী স্বীকৃতি")}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="lg:pl-8">
+                  <div className="relative">
+                    <div className="grid grid-cols-2 gap-4">
+                      <Card className="p-6 bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
+                        <div className="flex items-center space-x-3">
+                          <div className="p-2 bg-primary/20 rounded-lg">
+                            <TrendingUp className="h-6 w-6 text-primary" />
+                          </div>
+                          <div>
+                            <p className="text-2xl font-bold">95%</p>
+                            <p className="text-sm text-muted-foreground">{t("Success Rate", "সফলতার হার")}</p>
+                          </div>
+                        </div>
+                      </Card>
+                      <Card className="p-6 bg-gradient-to-br from-secondary/10 to-secondary/5 border-secondary/20">
+                        <div className="flex items-center space-x-3">
+                          <div className="p-2 bg-secondary/20 rounded-lg">
+                            <Clock className="h-6 w-6 text-secondary" />
+                          </div>
+                          <div>
+                            <p className="text-2xl font-bold">30%</p>
+                            <p className="text-sm text-muted-foreground">{t("Faster Learning", "দ্রুত শিক্ষা")}</p>
+                          </div>
+                        </div>
+                      </Card>
+                      <Card className="p-6 bg-gradient-to-br from-accent/10 to-accent/5 border-accent/20">
+                        <div className="flex items-center space-x-3">
+                          <div className="p-2 bg-accent/20 rounded-lg">
+                            <Target className="h-6 w-6 text-accent" />
+                          </div>
+                          <div>
+                            <p className="text-2xl font-bold">500+</p>
+                            <p className="text-sm text-muted-foreground">{t("Skills Covered", "দক্ষতা কভার")}</p>
+                          </div>
+                        </div>
+                      </Card>
+                      <Card className="p-6 bg-gradient-to-br from-destructive/10 to-destructive/5 border-destructive/20">
+                        <div className="flex items-center space-x-3">
+                          <div className="p-2 bg-destructive/20 rounded-lg">
+                            <Shield className="h-6 w-6 text-destructive" />
+                          </div>
+                          <div>
+                            <p className="text-2xl font-bold">100%</p>
+                            <p className="text-sm text-muted-foreground">{t("Job Ready", "কাজের জন্য প্রস্তুত")}</p>
+                          </div>
+                        </div>
+                      </Card>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Features Section */}
+          <section className="py-20 bg-muted/50">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="text-center space-y-4 mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold">
+                  {t("Why Choose SkillSim", "কেন SkillSim বেছে নিবেন")}
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  {t(
+                    "Experience learning that mirrors real workplace scenarios with cutting-edge simulation technology",
+                    "অত্যাধুনিক সিমুলেশন প্রযুক্তির মাধ্যমে বাস্তব কর্মক্ষেত্রের পরিস্থিতির মতো শেখার অভিজ্ঞতা নিন"
+                  )}
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <Card className="p-8 border-0 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="space-y-4">
+                    <div className="p-3 bg-primary/10 rounded-lg w-fit">
+                      <Zap className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold">{t("Interactive Simulations", "ইন্টারঅ্যাক্টিভ সিমুলেশন")}</h3>
+                    <p className="text-muted-foreground">
+                      {t(
+                        "Practice with realistic software environments that mirror what you'll use at work",
+                        "কর্মক্ষেত্রে ব্যবহৃত সফটওয়্যার পরিবেশের মতো বাস্তবসম্মত পরিবেশে অনুশীলন করুন"
+                      )}
+                    </p>
+                  </div>
+                </Card>
+
+                <Card className="p-8 border-0 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="space-y-4">
+                    <div className="p-3 bg-secondary/10 rounded-lg w-fit">
+                      <Award className="h-8 w-8 text-secondary" />
+                    </div>
+                    <h3 className="text-xl font-semibold">{t("Industry Certifications", "ইন্ডাস্ট্রি সার্টিফিকেশন")}</h3>
+                    <p className="text-muted-foreground">
+                      {t(
+                        "Earn recognized credentials that validate your skills to employers worldwide",
+                        "বিশ্বব্যাপী নিয়োগকর্তাদের কাছে আপনার দক্ষতা প্রমাণ করে এমন স্বীকৃত সার্টিফিকেশন অর্জন করুন"
+                      )}
+                    </p>
+                  </div>
+                </Card>
+
+                <Card className="p-8 border-0 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="space-y-4">
+                    <div className="p-3 bg-accent/10 rounded-lg w-fit">
+                      <Target className="h-8 w-8 text-accent" />
+                    </div>
+                    <h3 className="text-xl font-semibold">{t("Role-Based Learning", "ভূমিকা-ভিত্তিক শিক্ষা")}</h3>
+                    <p className="text-muted-foreground">
+                      {t(
+                        "Customized learning paths designed specifically for your career goals",
+                        "আপনার ক্যারিয়ার লক্ষ্যের জন্য বিশেষভাবে ডিজাইন করা কাস্টমাইজড শেখার পথ"
+                      )}
+                    </p>
+                  </div>
+                </Card>
+
+                <Card className="p-8 border-0 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="space-y-4">
+                    <div className="p-3 bg-primary/10 rounded-lg w-fit">
+                      <Clock className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold">{t("Flexible Learning", "নমনীয় শিক্ষা")}</h3>
+                    <p className="text-muted-foreground">
+                      {t(
+                        "Learn at your own pace with 24/7 access to all courses and simulations",
+                        "সকল কোর্স এবং সিমুলেশনে ২৪/৭ অ্যাক্সেস সহ নিজের গতিতে শিখুন"
+                      )}
+                    </p>
+                  </div>
+                </Card>
+
+                <Card className="p-8 border-0 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="space-y-4">
+                    <div className="p-3 bg-secondary/10 rounded-lg w-fit">
+                      <MessageSquare className="h-8 w-8 text-secondary" />
+                    </div>
+                    <h3 className="text-xl font-semibold">{t("Expert Mentorship", "বিশেষজ্ঞ পরামর্শ")}</h3>
+                    <p className="text-muted-foreground">
+                      {t(
+                        "Get guidance from industry experts with years of practical experience",
+                        "বছরের পর বছর ব্যবহারিক অভিজ্ঞতাসম্পন্ন ইন্ডাস্ট্রি বিশেষজ্ঞদের থেকে দিকনির্দেশনা নিন"
+                      )}
+                    </p>
+                  </div>
+                </Card>
+
+                <Card className="p-8 border-0 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="space-y-4">
+                    <div className="p-3 bg-accent/10 rounded-lg w-fit">
+                      <Globe className="h-8 w-8 text-accent" />
+                    </div>
+                    <h3 className="text-xl font-semibold">{t("Global Community", "বিশ্বব্যাপী কমিউনিটি")}</h3>
+                    <p className="text-muted-foreground">
+                      {t(
+                        "Connect with professionals worldwide and build your network",
+                        "বিশ্বব্যাপী পেশাদারদের সাথে যুক্ত হন এবং আপনার নেটওয়ার্ক তৈরি করুন"
+                      )}
+                    </p>
+                  </div>
+                </Card>
               </div>
             </div>
           </section>
           
-          <section className="py-16 relative z-10" id="careers">
+          {/* Testimonials Section */}
+          <section className="py-20" id="testimonials">
             <div className="container mx-auto px-4 md:px-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-                {t("Who Should Enroll?", "কাদের ভর্তি হওয়া উচিত?")}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              <div className="text-center space-y-4 mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold">
+                  {t("What Our Students Say", "আমাদের শিক্ষার্থীরা কী বলেন")}
+                </h2>
+                <p className="text-xl text-muted-foreground">
+                  {t("Real stories from professionals who transformed their careers", "যারা তাদের ক্যারিয়ার পরিবর্তন করেছেন তাদের সত্যি গল্প")}
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {/* Video Testimonial 1 */}
+                <Card className="overflow-hidden">
+                  <div className="relative aspect-video bg-muted">
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                      title="Sarah Ahmed - HR Professional Success Story"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold mb-2">Sarah Ahmed</h3>
+                    <p className="text-sm text-muted-foreground">HR Manager at TechCorp</p>
+                    <p className="text-sm mt-3">
+                      {t(
+                        "SkillSim's HR simulations helped me master workforce analytics. I got promoted within 6 months!",
+                        "SkillSim এর HR সিমুলেশন আমাকে কর্মশক্তি বিশ্লেষণে দক্ষ হতে সাহায্য করেছে। ৬ মাসের মধ্যেই আমি পদোন্নতি পেয়েছি!"
+                      )}
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Video Testimonial 2 */}
+                <Card className="overflow-hidden">
+                  <div className="relative aspect-video bg-muted">
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                      title="Rahul Sharma - Finance Professional Success"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold mb-2">Rahul Sharma</h3>
+                    <p className="text-sm text-muted-foreground">Senior Financial Analyst</p>
+                    <p className="text-sm mt-3">
+                      {t(
+                        "The financial modeling simulations were game-changing. Now I confidently handle complex forecasts.",
+                        "ফাইন্যান্সিয়াল মডেলিং সিমুলেশনগুলি গেম-চেঞ্জার ছিল। এখন আমি জটিল পূর্বাভাসগুলি আত্মবিশ্বাসের সাথে পরিচালনা করি।"
+                      )}
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Video Testimonial 3 */}
+                <Card className="overflow-hidden">
+                  <div className="relative aspect-video bg-muted">
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                      title="Maria Rodriguez - Operations Excellence"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold mb-2">Maria Rodriguez</h3>
+                    <p className="text-sm text-muted-foreground">Operations Director</p>
+                    <p className="text-sm mt-3">
+                      {t(
+                        "Learning supply chain optimization through real scenarios gave me the edge I needed for leadership.",
+                        "প্রকৃত পরিস্থিতির মাধ্যমে সাপ্লাই চেইন অপ্টিমাইজেশন শেখা আমাকে নেতৃত্বের জন্য প্রয়োজনীয় সুবিধা দিয়েছে।"
+                      )}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Success Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div className="space-y-2">
+                  <div className="text-3xl md:text-4xl font-bold text-primary">10,000+</div>
+                  <p className="text-muted-foreground">{t("Professionals Trained", "প্রশিক্ষিত পেশাদার")}</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-3xl md:text-4xl font-bold text-secondary">95%</div>
+                  <p className="text-muted-foreground">{t("Job Placement Rate", "চাকরি প্রাপ্তির হার")}</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-3xl md:text-4xl font-bold text-accent">40%</div>
+                  <p className="text-muted-foreground">{t("Average Salary Increase", "গড় বেতন বৃদ্ধি")}</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-3xl md:text-4xl font-bold text-destructive">500+</div>
+                  <p className="text-muted-foreground">{t("Industry Partners", "ইন্ডাস্ট্রি অংশীদার")}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* Demo Section */}
+          <section className="py-20 bg-muted/50" id="demo">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="text-center space-y-4 mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold">
+                  {t("See SkillSim in Action", "SkillSim এর কার্যকারিতা দেখুন")}
+                </h2>
+                <p className="text-xl text-muted-foreground">
+                  {t("Experience our interactive learning platform", "আমাদের ইন্টারঅ্যাক্টিভ লার্নিং প্ল্যাটফর্ম অভিজ্ঞতা নিন")}
+                </p>
+              </div>
+
+              <div className="max-w-4xl mx-auto">
+                <Card className="overflow-hidden shadow-2xl">
+                  <div className="relative aspect-video bg-gradient-to-br from-primary/10 to-secondary/10">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Button size="lg" className="bg-white/90 text-primary hover:bg-white shadow-lg">
+                        <PlayCircle className="mr-2 h-6 w-6" />
+                        {t("Play Demo", "ডেমো চালান")}
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </section>
+          
+          {/* Career Paths Section */}
+          <section className="py-20" id="careers">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="text-center space-y-4 mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold">
+                  {t("Choose Your Career Path", "আপনার ক্যারিয়ার পথ বেছে নিন")}
+                </h2>
+                <p className="text-xl text-muted-foreground">
+                  {t("Specialized learning tracks for every professional role", "প্রতিটি পেশাদার ভূমিকার জন্য বিশেষায়িত শেখার ট্র্যাক")}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {careers.map((career, index) => (
-                  <Card key={index} className="skill-card hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6 text-center">
-                      <div className="mb-4 flex justify-center">
-                        {career.icon}
+                  <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 border-0 shadow-md group cursor-pointer">
+                    <CardContent className="p-0">
+                      <div className="flex items-start space-x-4">
+                        <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                          {career.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                            {t(career.titleEn, career.titleBn)}
+                          </h3>
+                          <Link to="/select-role">
+                            <Button variant="ghost" size="sm" className="p-0 h-auto font-normal text-muted-foreground hover:text-primary">
+                              {t("Explore Path →", "পথ অন্বেষণ করুন →")}
+                            </Button>
+                          </Link>
+                        </div>
                       </div>
-                      <h3 className="font-medium">
-                        {t(career.titleEn, career.titleBn)}
-                      </h3>
                     </CardContent>
                   </Card>
                 ))}
@@ -329,47 +592,88 @@ const Index = () => {
             </div>
           </section>
           
-          <section className="py-16 bg-gray-50 dark:bg-gray-900 relative z-10" id="how-it-works">
+          {/* How It Works Section */}
+          <section className="py-20 bg-muted/50" id="how-it-works">
             <div className="container mx-auto px-4 md:px-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-                {t("How It Works", "কিভাবে কাজ করে")}
-              </h2>
+              <div className="text-center space-y-4 mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold">
+                  {t("How It Works", "এটি কীভাবে কাজ করে")}
+                </h2>
+                <p className="text-xl text-muted-foreground">
+                  {t("Your journey from beginner to expert in 3 simple steps", "৩টি সহজ ধাপে নতুন থেকে বিশেষজ্ঞ হওয়ার যাত্রা")}
+                </p>
+              </div>
               <div className="grid md:grid-cols-3 gap-8">
                 {steps.map((step, index) => (
-                  <div key={index} className="text-center">
-                    <div className="mb-4 flex justify-center">
-                      {step.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">
-                      {t(step.titleEn, step.titleBn)}
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      {t(step.descriptionEn, step.descriptionBn)}
-                    </p>
+                  <div key={index} className="text-center relative">
+                    {/* Connector Line */}
+                    {index < steps.length - 1 && (
+                      <div className="hidden md:block absolute top-16 left-1/2 w-full h-0.5 bg-gradient-to-r from-primary via-secondary to-accent transform translate-x-1/2 z-0" />
+                    )}
+                    
+                    <Card className="relative z-10 p-8 border-0 shadow-lg hover:shadow-xl transition-shadow">
+                      <CardContent className="p-0 space-y-4">
+                        <div className="relative">
+                          <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mb-4">
+                            {step.icon}
+                          </div>
+                          <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
+                            {index + 1}
+                          </div>
+                        </div>
+                        <h3 className="text-xl font-semibold">
+                          {t(step.titleEn, step.titleBn)}
+                        </h3>
+                        <p className="text-muted-foreground">
+                          {t(step.descriptionEn, step.descriptionBn)}
+                        </p>
+                      </CardContent>
+                    </Card>
                   </div>
                 ))}
               </div>
             </div>
           </section>
           
-          <section className="py-16 relative z-10" id="why-now">
-            <div className="container mx-auto px-4 md:px-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-                {t("Why Now?", "কেন এখন?")}
-              </h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                {whyNow.map((item, index) => (
-                  <Card key={index} className="skill-card hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold mb-4">
-                        {t(item.titleEn, item.titleBn)}
-                      </h3>
-                      <p className="text-gray-700 dark:text-gray-300">
-                        {t(item.descriptionEn, item.descriptionBn)}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
+          {/* Call to Action Section */}
+          <section className="py-20 bg-gradient-to-br from-primary via-primary/90 to-secondary text-white">
+            <div className="container mx-auto px-4 md:px-6 text-center">
+              <div className="max-w-3xl mx-auto space-y-8">
+                <h2 className="text-3xl md:text-4xl font-bold">
+                  {t("Ready to Transform Your Career?", "আপনার ক্যারিয়ার পরিবর্তন করতে প্রস্তুত?")}
+                </h2>
+                <p className="text-xl text-white/90">
+                  {t(
+                    "Join thousands of professionals who have already accelerated their careers with SkillSim",
+                    "হাজার হাজার পেশাদারদের সাথে যোগ দিন যারা ইতিমধ্যে SkillSim এর সাথে তাদের ক্যারিয়ার ত্বরান্বিত করেছেন"
+                  )}
+                </p>
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
+                  <Link to="/login">
+                    <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg">
+                      <Award className="mr-2 h-5 w-5" />
+                      {t("Start Free Trial", "ফ্রি ট্রায়াল শুরু করুন")}
+                    </Button>
+                  </Link>
+                  <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" onClick={() => scrollToSection('pricing')}>
+                    <Crown className="mr-2 h-5 w-5" />
+                    {t("View Pricing", "মূল্য দেখুন")}
+                  </Button>
+                </div>
+                <div className="pt-8 border-t border-white/20">
+                  <div className="grid grid-cols-3 gap-8 text-center">
+                    {whyNow.map((item, index) => (
+                      <div key={index} className="space-y-2">
+                        <h3 className="font-semibold text-lg">
+                          {t(item.titleEn, item.titleBn)}
+                        </h3>
+                        <p className="text-white/80 text-sm">
+                          {t(item.descriptionEn, item.descriptionBn)}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </section>
